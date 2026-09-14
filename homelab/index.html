@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>홈서버</title>
+  <meta name="description" content="집 Mac Mini 홈랩. Compose로 상태성 인프라를, Kubernetes로 웹앱을 돌립니다. 이 사이트는 GitHub Pages에서 서빙합니다.">
+  <link rel="canonical" href="https://sonji0507.github.io/homelab/">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="/">Sonji</a>
+    <nav aria-label="주요">
+      <ul>
+        <li><a href="/">홈</a></li>
+        <li><a href="/homelab/" aria-current="page">홈서버</a></li>
+        <li><a href="/about/">소개</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1 id="홈서버">홈서버</h1>
+<p>이 사이트는 GitHub Pages(<code>https://sonji0507.github.io</code>)에서 서빙합니다. 아래는 집 Mac Mini 홈랩의 실제 구성입니다. 그 클러스터에서 공개 앱 <a href="https://playground.sonjh.com"><code>https://playground.sonjh.com</code></a>이 Kubernetes Deployment로 동작 중입니다.</p>
+<p><img alt="홈랩 공개 경로. GitHub Pages는 이 사이트, Tunnel은 playground 앱, Compose는 Postgres·Redis·MinIO." src="/img/homelab.svg" /></p>
+<p>이 HTML은 홈서버 Pod가 서빙하지 않습니다. 라이브 앱은 playground 한 줄뿐입니다.</p>
+<h2 id="왜-이렇게-나눴나">왜 이렇게 나눴나</h2>
+<p>상태성 인프라(Postgres, Redis, MinIO, NPM, Tunnel)는 호스트 <code>docker-compose.yml</code>에 둡니다. 웹앱은 Colima Kubernetes의 <code>k8s/</code> 매니페스트로 올립니다. 데이터베이스는 오래 살고, 앱은 이미지 태그만 갈아끼우면 됩니다. 한 클러스터에 Postgres 오퍼레이터까지 올리면 싱글 노드 Mac Mini에서 운영 비용만 커집니다.</p>
+<p>앱 코드와 배포 책임도 갈랐습니다. playground 레포는 <code>make image</code>만 하고, <code>oh-my-homeserver</code>는 Colima에 이미지를 실은 뒤 <code>kubectl set image</code>로 롤링합니다 (<code>k8s/DEPLOY.md</code>). 인프라 Makefile은 앱 빌드를 호출하지 않습니다. 이 포트폴리오 사이트는 그 경로를 쓰지 않습니다. 소스는 이 GitHub Pages 레포입니다.</p>
+<h2 id="minio는-compose가-정본">MinIO는 compose가 정본</h2>
+<p>MinIO는 <code>docker-compose.yml</code>에서 <code>infra-network</code>에 붙어 있고, 호스트로 API <code>:9000</code>과 콘솔 포트를 publish합니다. Pod는 <code>k8s/external/minio.yaml</code>의 ExternalName(<code>host.docker.internal:9000</code>)으로 API에만 붙습니다. <code>k8s/kustomization.yaml</code>이 이 서비스를 포함합니다.</p>
+<p>README의 “MinIO는 infra-network에 붙지 않는다”, 매니페스트 주석의 같은 전제, MinIO.md의 “kustomize 미포함”은 compose·kustomize와 어긋납니다. 이 페이지는 파일을 따릅니다. 콘솔은 공개 프록시에 올리지 않습니다.</p>
+<p>버킷과 Access Key는 compose가 만들지 않습니다. 앱을 붙일 때마다 <code>scripts/minio-onboard-app.sh</code>로 그 버킷만 허용하는 키를 발급하고, MinIO root 계정은 앱 env에 넣지 않습니다. 버킷은 private(<code>anonymous none</code>)입니다.</p>
+<h2 id="공개-면과-한계">공개 면과 한계</h2>
+<p>playground Ingress(<code>k8s/apps/playground/ingress.yaml</code>)는 호스트 <code>playground.sonjh.com</code>만 보고, TLS 블록이 없습니다. 인증서는 Cloudflare와 NPM에서 끊고, 클러스터 안은 HTTP입니다. 이미지는 Colima의 Docker + cri-dockerd 경로로 load합니다. <code>nerdctl</code>/<code>k3s ctr</code> 실패는 이 구성에서 정상입니다.</p>
+<p>인터넷에서 홈랩 앱으로 들어오는 길은 Cloudflare Tunnel입니다. 포트폴리오 자신은 Pages입니다. 노드는 Mac Mini 하나, Deployment replica는 1입니다.</p>
+<table>
+<thead>
+<tr>
+<th>결정</th>
+<th>이유</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>상태성은 Compose, 웹앱은 k8s</td>
+<td>데이터는 호스트에 두고 앱만 자주 교체한다.</td>
+</tr>
+<tr>
+<td>앱 레포가 빌드, 인프라 레포가 배포</td>
+<td><code>k8s/DEPLOY.md</code>. 레포를 섞지 않는다.</td>
+</tr>
+<tr>
+<td>MinIO는 <code>infra-network</code> + 호스트 publish</td>
+<td><code>docker-compose.yml</code> 정본. Pod는 ExternalName <code>:9000</code>.</td>
+</tr>
+<tr>
+<td>앱별 버킷·Access Key</td>
+<td><code>minio-onboard-app.sh</code>. root 키는 앱에 없음.</td>
+</tr>
+<tr>
+<td>TLS는 클러스터 밖</td>
+<td>Ingress에 cert-manager 없음. NPM/Cloudflare가 종료.</td>
+</tr>
+<tr>
+<td>cri-dockerd load</td>
+<td>Colima <code>runtime: docker</code>. nerdctl이 아님.</td>
+</tr>
+<tr>
+<td>공개 유입은 Tunnel, 이 사이트는 Pages</td>
+<td>정적 문서를 홈서버 장애에 묶지 않는다.</td>
+</tr>
+<tr>
+<td>replica 1, 싱글 노드</td>
+<td>집 장비. HA를 주장하지 않는다.</td>
+</tr>
+</tbody>
+</table>
+  </main>
+  <footer class="site-footer">
+    <p>이 사이트는 GitHub Pages에서 서빙합니다.</p>
+  </footer>
+</body>
+</html>

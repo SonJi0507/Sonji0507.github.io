@@ -216,7 +216,7 @@ a {
   }
 
   html {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .grain,
@@ -227,7 +227,7 @@ a {
   body {
     background: #fff;
     color: #1c1917;
-    line-height: 1.4;
+    line-height: 1.65;
   }
 
   .site-header,
@@ -237,7 +237,7 @@ a {
   }
 
   .site-header {
-    padding: 0 0 0.4rem;
+    padding: 0 0 0.6rem;
   }
 
   .wordmark,
@@ -246,18 +246,8 @@ a {
     color: #1c1917;
   }
 
-  .wordmark {
-    font-size: 8px;
-  }
-
-  .header-link {
-    font-size: 8px;
-  }
-
   .kicker {
-    margin-bottom: 0.25rem;
     color: #8a5a2b;
-    font-size: 7px;
   }
 
   .project {
@@ -265,24 +255,17 @@ a {
   }
 
   .project h1 {
-    margin-bottom: 0.45rem;
-    font-size: 16px;
+    font-size: 2.8rem;
   }
 
   .project p {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.7rem;
     color: #44403c;
   }
 
   .chips li {
     color: #44403c;
     border-color: #d6d0c4;
-    font-size: 7.5px;
-    padding: 0.12rem 0.4rem;
-  }
-
-  .chips {
-    gap: 0.28rem;
   }
 
   a {
@@ -297,7 +280,7 @@ a {
   }
 
   .diagram {
-    margin-top: 0.55rem;
+    margin-top: 1.2rem;
     background: #fff;
     border: 1px solid #d6d0c4;
     print-color-adjust: exact;
@@ -305,11 +288,11 @@ a {
   }
 
   .diagram-svg {
-    max-height: 10.8cm;
+    max-height: 9.4cm;
   }
 
   .stack {
-    padding-top: 0.55rem;
+    padding-top: 1.2rem;
   }
 
   .diagram .panel {

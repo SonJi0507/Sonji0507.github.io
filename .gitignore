@@ -1,5 +1,7 @@
-.venv
-.idea
-
+.venv/
+.idea/
 .DS_Store
-main.py
+dist/
+qrcode.png
+__pycache__/
+*.pyc

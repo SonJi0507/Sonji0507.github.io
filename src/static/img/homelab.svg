@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 640" role="img" aria-labelledby="title desc">
   <title id="title">홈서버 구성</title>
-  <desc id="desc">이 사이트는 GitHub Pages로 열리고, 배포된 앱은 터널과 프록시를 거쳐 쿠버네티스로 간다. 데이터베이스와 파일 저장소는 호스트 컨테이너에 남는다.</desc>
+  <desc id="desc">방문자는 포트폴리오와 배포된 앱으로 갈라진다. 앱은 터널과 프록시를 거쳐 쿠버네티스로 가고, 데이터는 호스트 컨테이너에 남는다.</desc>
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
       <path d="M0 0 L8 4 L0 8 z" fill="#d4a574"/>
@@ -28,7 +28,7 @@
 
   <rect class="box-accent" x="40" y="152" width="280" height="70" rx="10"/>
   <text class="label" x="180" y="180" text-anchor="middle">이 사이트</text>
-  <text class="sub" x="180" y="198" text-anchor="middle">GitHub Pages · 포트폴리오</text>
+  <text class="sub" x="180" y="198" text-anchor="middle">포트폴리오</text>
 
   <rect class="box" x="400" y="152" width="280" height="70" rx="10"/>
   <text class="label" x="540" y="180" text-anchor="middle">터널</text>
@@ -50,7 +50,7 @@
 
   <rect class="box" x="400" y="462" width="280" height="58" rx="10"/>
   <text class="label" x="540" y="486" text-anchor="middle">배포된 앱</text>
-  <text class="sub" x="540" y="504" text-anchor="middle">노드 하나</text>
+  <text class="sub" x="540" y="504" text-anchor="middle">클러스터 위 워크로드</text>
 
   <text class="kicker" x="36" y="548">HOST</text>
   <rect class="box" x="40" y="560" width="200" height="52" rx="10"/>

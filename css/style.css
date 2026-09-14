@@ -25,7 +25,8 @@ body {
   min-height: 100vh;
   color: var(--ink);
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(212, 165, 116, 0.08), transparent 55%),
+    radial-gradient(560px 560px at var(--px, 50%) var(--py, 12%), rgba(212, 165, 116, 0.14), transparent 58%),
+    radial-gradient(1200px 600px at 10% -10%, rgba(212, 165, 116, 0.07), transparent 55%),
     radial-gradient(900px 500px at 110% 10%, rgba(110, 140, 150, 0.08), transparent 50%),
     var(--bg);
   font-family: Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
@@ -104,6 +105,42 @@ main {
   line-height: 1.12;
 }
 
+.hero h1.split {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hero h1.split span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.55em);
+  animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--i) * 28ms);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(6px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .lede {
   margin: 0;
   max-width: 36rem;
@@ -180,6 +217,13 @@ main {
   border-radius: 999px;
   color: var(--muted);
   font-size: 0.85rem;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.chips li:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+  transform: translateY(-2px);
 }
 
 .site-footer {
@@ -215,5 +259,13 @@ a {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .reveal,
+  .hero h1.split span {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
   }
 }

@@ -103,7 +103,7 @@ def render_pages(env: Environment) -> list[str]:
 
 
 def copy_static() -> None:
-    for name in ("css", "img"):
+    for name in ("css", "img", "js"):
         src = STATIC / name
         dest = DIST / name
         if not src.is_dir():

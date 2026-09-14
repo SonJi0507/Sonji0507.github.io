@@ -17,14 +17,16 @@ description: 백엔드·플랫폼. 집에서 서버를 굴리는 미니 프로�
 <p class="reveal">앱 저장소는 컨테이너 이미지만 만들고, 인프라 저장소가 그 이미지를 받아 올립니다. 역할을 한 레포에 섞지 않습니다.</p>
 <p class="reveal">파일 저장소는 앱마다 열쇠를 따로 줍니다. 관리자 계정은 앱에 넣지 않고, 관리 화면은 인터넷에 열지 않습니다.</p>
 <p class="reveal">밖에 내보내는 앱은 공유기 포트를 열지 않고 터널로 나갑니다. 인증서는 클러스터 밖에서 끊고, 그 위에 배포된 웹앱이 돌아가고 있습니다.</p>
+<p class="reveal">머신과 컨테이너 상태는 Beszel로, 배포한 서비스가 살아 있는지는 Uptime Kuma로 봅니다. 대시보드는 밖에 열지 않습니다.</p>
 
-<img class="reveal" src="/img/homelab.svg" alt="방문자는 포트폴리오와 배포된 앱으로 갈라진다. 앱은 터널과 프록시를 거쳐 쿠버네티스로 가고, 데이터는 호스트 컨테이너에 남는다.">
+<img class="reveal" src="/img/homelab.svg" alt="방문자는 포트폴리오와 배포된 앱으로 갈라진다. 앱은 터널과 프록시를 거쳐 쿠버네티스로 가고, 데이터는 호스트 컨테이너에 남는다. 관측은 호스트에서 한다.">
 
 <ul class="points">
 <li class="reveal"><strong>상태와 앱을 나눔</strong> 데이터는 호스트에 두고, 웹앱만 클러스터에서 갈아끼웁니다.</li>
 <li class="reveal"><strong>빌드와 배포를 나눔</strong> 앱은 이미지만 만들고, 인프라가 올려서 교체합니다.</li>
 <li class="reveal"><strong>열쇠는 앱 단위</strong> 저장소 루트 키를 앱에 넣지 않습니다.</li>
 <li class="reveal"><strong>공개 면을 좁힘</strong> 배포된 앱만 터널로 내보냅니다. 관리 도구는 밖에 없습니다.</li>
+<li class="reveal"><strong>상태를 봄</strong> 호스트는 Beszel, 서비스 업타임은 Uptime Kuma. 화면은 공개하지 않습니다.</li>
 </ul>
 </section>
 
@@ -39,5 +41,7 @@ description: 백엔드·플랫폼. 집에서 서버를 굴리는 미니 프로�
 <li>Docker</li>
 <li>Kubernetes</li>
 <li>Terraform</li>
+<li>Beszel</li>
+<li>Uptime Kuma</li>
 </ul>
 </section>

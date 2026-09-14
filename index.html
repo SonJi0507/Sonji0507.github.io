@@ -27,9 +27,9 @@
 <p class="reveal">밖에 내보내는 앱은 공유기 포트를 열지 않고 Cloudflare Tunnel로 나갑니다. 앞에서 Nginx Proxy Manager가 인증서를 끊고, 그 뒤에 배포된 웹앱이 돌아가고 있습니다.</p>
 <p class="reveal">머신과 컨테이너 상태는 Beszel로, 배포한 서비스가 살아 있는지는 Uptime Kuma로 봅니다. 대시보드는 밖에 열지 않습니다.</p>
 
-<figure class="diagram reveal"><svg class="diagram-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 680" role="img" aria-labelledby="title desc">
+<figure class="diagram reveal"><svg class="diagram-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 760" role="img" aria-labelledby="title desc">
   <title id="title">홈서버 구성</title>
-  <desc id="desc">배포된 앱은 Cloudflare Tunnel과 Nginx Proxy Manager를 거쳐 Colima k3s로 간다. 데이터는 호스트 컨테이너에 남고, Beszel과 Uptime Kuma로 상태를 본다.</desc>
+  <desc id="desc">배포된 앱은 Cloudflare Tunnel과 Nginx Proxy Manager를 거쳐 Colima k3s로 간다. 데이터는 호스트 컨테이너에 남고, Beszel과 Uptime Kuma로 상태를 본다. 알람은 Slack으로 받는다.</desc>
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
       <path d="M0 0 L8 4 L0 8 z" fill="#d4a574"/>
@@ -44,7 +44,7 @@
     .line { stroke: #d4a574; stroke-width: 1.35; fill: none; marker-end: url(#arrow); }
     .line-soft { stroke: #9c968b; stroke-width: 1.15; fill: none; stroke-dasharray: 5 4; marker-end: url(#arrow); }
   </style>
-  <rect class="panel" x="0" y="0" width="720" height="680" rx="16"/>
+  <rect class="panel" x="0" y="0" width="720" height="760" rx="16"/>
 
   <text class="kicker" x="36" y="36">PUBLIC</text>
   <rect class="box" x="210" y="50" width="300" height="52" rx="10"/>
@@ -100,6 +100,13 @@
   <rect class="box" x="370" y="588" width="310" height="52" rx="10"/>
   <text class="label" x="525" y="610" text-anchor="middle">Uptime Kuma</text>
   <text class="sub" x="525" y="626" text-anchor="middle">서비스가 살아 있는지</text>
+
+  <path class="line-soft" d="M 195 640 L 360 668"/>
+  <path class="line-soft" d="M 525 640 L 360 668"/>
+
+  <rect class="box" x="210" y="672" width="300" height="52" rx="10"/>
+  <text class="label" x="360" y="694" text-anchor="middle">Slack</text>
+  <text class="sub" x="360" y="710" text-anchor="middle">알람</text>
 </svg></figure>
 </section>
 

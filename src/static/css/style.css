@@ -106,6 +106,50 @@ main ol {
   padding-left: 1.2rem;
 }
 
+main img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.25rem 0 0.4rem;
+  background: #fffdf8;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+main img + p {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+main table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  margin: 0 0 1.5rem;
+}
+
+main th,
+main td {
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  padding: 0.55rem 0.75rem 0.55rem 0;
+}
+
+main th {
+  font-weight: 600;
+}
+
+main code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.86em;
+  background: #ebe6dc;
+  padding: 0.08em 0.35em;
+  border-radius: 4px;
+}
+
 .site-footer {
   padding: 1.25rem 0 2.5rem;
   border-top: 1px solid var(--line);

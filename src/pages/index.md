@@ -19,9 +19,6 @@ description: 백엔드·플랫폼. 홈서버 미니 프로젝트를 진행 중�
 <section class="stack reveal" id="stack">
 <p class="kicker">Using</p>
 <ul class="chips">
-<li>Python</li>
-<li>Django</li>
-<li>FastAPI</li>
 <li>PostgreSQL</li>
 <li>Redis</li>
 <li>Docker</li>
@@ -29,7 +26,6 @@ description: 백엔드·플랫폼. 홈서버 미니 프로젝트를 진행 중�
 <li>k3s</li>
 <li>Cloudflare</li>
 <li>Nginx Proxy Manager</li>
-<li>Terraform</li>
 <li>Beszel</li>
 <li>Uptime Kuma</li>
 </ul>

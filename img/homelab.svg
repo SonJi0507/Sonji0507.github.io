@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 680" role="img" aria-labelledby="title desc">
   <title id="title">홈서버 구성</title>
-  <desc id="desc">배포된 앱은 터널과 프록시를 거쳐 쿠버네티스로 간다. 데이터는 호스트 컨테이너에 남고, Beszel과 Uptime Kuma로 상태를 본다.</desc>
+  <desc id="desc">배포된 앱은 Cloudflare Tunnel과 Nginx Proxy Manager를 거쳐 Colima k3s로 간다. 데이터는 호스트 컨테이너에 남고, Beszel과 Uptime Kuma로 상태를 본다.</desc>
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
       <path d="M0 0 L8 4 L0 8 z" fill="#d4a574"/>
@@ -25,19 +25,19 @@
   <path class="line" d="M 360 102 L 360 132"/>
 
   <rect class="box" x="210" y="136" width="300" height="52" rx="10"/>
-  <text class="label" x="360" y="158" text-anchor="middle">터널</text>
+  <text class="label" x="360" y="158" text-anchor="middle">Cloudflare Tunnel</text>
   <text class="sub" x="360" y="174" text-anchor="middle">공유기 포트 없이 공개</text>
 
   <path class="line" d="M 360 188 L 360 218"/>
 
   <rect class="box" x="210" y="222" width="300" height="52" rx="10"/>
-  <text class="label" x="360" y="244" text-anchor="middle">리버스 프록시</text>
+  <text class="label" x="360" y="244" text-anchor="middle">Nginx Proxy Manager</text>
   <text class="sub" x="360" y="260" text-anchor="middle">인증서는 여기서 종료</text>
 
   <path class="line" d="M 360 274 L 360 304"/>
 
   <rect class="box" x="210" y="308" width="300" height="52" rx="10"/>
-  <text class="label" x="360" y="330" text-anchor="middle">쿠버네티스</text>
+  <text class="label" x="360" y="330" text-anchor="middle">Colima · k3s</text>
   <text class="sub" x="360" y="346" text-anchor="middle">웹앱만 올림</text>
 
   <path class="line" d="M 360 360 L 360 390"/>

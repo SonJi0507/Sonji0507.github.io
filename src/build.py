@@ -20,6 +20,10 @@ DIST = ROOT / "dist"
 CANONICAL_ORIGIN = "https://sonji0507.github.io"
 
 IMG_RE = re.compile(r"!\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
+IMG_TAG_RE = re.compile(
+    r'<img\b[^>]*\bsrc="(/img/[^"]+\.svg)"[^>]*>',
+    re.IGNORECASE,
+)
 
 
 def slugify(value: str, separator: str) -> str:
@@ -58,6 +62,22 @@ def page_output(md_path: Path) -> tuple[Path, str]:
     return DIST / slug / "index.html", f"/{slug.as_posix()}/"
 
 
+def inline_local_svgs(html: str) -> str:
+    """Embed local SVGs so print CSS can recolor them. <img src=svg> cannot."""
+
+    def replace(match: re.Match[str]) -> str:
+        src = match.group(1)
+        path = STATIC / src.lstrip("/")
+        if not path.is_file():
+            fail(f"missing svg for inline: {src}")
+        svg = path.read_text(encoding="utf-8")
+        svg = re.sub(r"<\?xml[^>]+\?>", "", svg).strip()
+        svg = re.sub(r"<svg\b", '<svg class="diagram-svg"', svg, count=1)
+        return f'<figure class="diagram reveal">{svg}</figure>'
+
+    return IMG_TAG_RE.sub(replace, html)
+
+
 def canonical_href(path: str) -> str:
     if path == "/":
         return f"{CANONICAL_ORIGIN}/"
@@ -84,7 +104,7 @@ def render_pages(env: Environment) -> list[str]:
         check_images(post.content, md_path)
 
         md.reset()
-        body = md.convert(post.content)
+        body = inline_local_svgs(md.convert(post.content))
         out_path, url_path = page_output(md_path)
         html = template.render(
             title=title,
@@ -103,7 +123,7 @@ def render_pages(env: Environment) -> list[str]:
 
 
 def copy_static() -> None:
-    for name in ("css", "img"):
+    for name in ("css", "img", "js"):
         src = STATIC / name
         dest = DIST / name
         if not src.is_dir():

@@ -59,6 +59,19 @@
     });
   };
 
+  const showAll = () => {
+    document.querySelectorAll(".reveal").forEach((node) => {
+      node.classList.add("is-in");
+    });
+  };
+
+  window.addEventListener("beforeprint", showAll);
+  if (window.matchMedia) {
+    window.matchMedia("print").addEventListener("change", (event) => {
+      if (event.matches) showAll();
+    });
+  }
+
   spotlight();
   reveal();
 })();

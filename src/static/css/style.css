@@ -204,3 +204,60 @@ a {
     filter: none;
   }
 }
+
+@media print {
+  .grain {
+    display: none;
+  }
+
+  body {
+    background: #fff;
+    color: #1c1917;
+  }
+
+  .wordmark,
+  .header-link,
+  .project h1 {
+    color: #1c1917;
+  }
+
+  .kicker {
+    color: #8a5a2b;
+  }
+
+  .project p,
+  .chips li {
+    color: #44403c;
+  }
+
+  a {
+    color: #8a5a2b;
+  }
+
+  .reveal,
+  .project img {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .project {
+    padding-top: 0;
+  }
+
+  .project img {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    max-height: 68vh;
+    width: auto;
+    margin-inline: auto;
+    background: transparent;
+    border: 1px solid #d6d0c4;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .chips li {
+    border-color: #d6d0c4;
+  }
+}

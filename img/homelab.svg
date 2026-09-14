@@ -9,11 +9,20 @@
   <style>
     .panel { fill: #14161c; }
     .box { fill: #1b1e26; stroke: rgba(242,238,230,0.14); stroke-width: 1.2; }
-    .label { font: 600 14px Pretendard, sans-serif; fill: #f2eee6; }
-    .sub { font: 12px Pretendard, sans-serif; fill: #9c968b; }
-    .kicker { font: 650 11px Pretendard, sans-serif; fill: #d4a574; letter-spacing: 0.14em; }
+    .label { font: 600 14px system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; fill: #f2eee6; }
+    .sub { font: 12px system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; fill: #9c968b; }
+    .kicker { font: 650 11px system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; fill: #d4a574; letter-spacing: 0.14em; }
     .line { stroke: #d4a574; stroke-width: 1.35; fill: none; marker-end: url(#arrow); }
     .line-soft { stroke: #9c968b; stroke-width: 1.15; fill: none; stroke-dasharray: 5 4; marker-end: url(#arrow); }
+    @media print {
+      .panel { fill: #fff; }
+      .box { fill: #f7f5f0; stroke: #c4bfb4; }
+      .label { fill: #1c1917; }
+      .sub { fill: #57534e; }
+      .kicker { fill: #8a5a2b; }
+      .line { stroke: #8a5a2b; }
+      .line-soft { stroke: #78716c; }
+    }
   </style>
   <rect class="panel" x="0" y="0" width="720" height="680" rx="16"/>
 

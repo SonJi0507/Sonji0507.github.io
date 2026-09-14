@@ -57,7 +57,7 @@
 
   <rect class="box" x="480" y="492" width="200" height="52" rx="10"/>
   <text class="label" x="580" y="514" text-anchor="middle">파일 저장소</text>
-  <text class="sub" x="580" y="530" text-anchor="middle">앱마다 열쇠</text>
+  <text class="sub" x="580" y="530" text-anchor="middle">앱별로만 접근</text>
 
   <path class="line-soft" d="M 280 446 L 140 488"/>
   <path class="line-soft" d="M 360 446 L 360 488"/>

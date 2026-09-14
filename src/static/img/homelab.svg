@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 700" role="img" aria-labelledby="title desc">
+  <title id="title">홈랩 공개 경로</title>
+  <desc id="desc">이 포트폴리오는 GitHub Pages에서 서빙된다. playground 앱은 Cloudflare Tunnel, NPM, Colima Ingress를 거쳐 Deployment로 간다. Pod는 호스트 Compose의 Postgres, Redis, MinIO API에 ExternalName으로 붙는다.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 z" fill="#0f3d3e"/>
+    </marker>
+  </defs>
+  <style>
+    .bg { fill: #fffdf8; }
+    .box { fill: #f4f1ea; stroke: #0f3d3e; stroke-width: 1.5; }
+    .box-pages { fill: #e7f0f0; stroke: #0f3d3e; stroke-width: 2; }
+    .box-host { fill: #f4f1ea; stroke: #57534e; stroke-width: 1.5; }
+    .label { font: 600 15px ui-sans-serif, system-ui, sans-serif; fill: #1c1917; }
+    .sub { font: 13px ui-sans-serif, system-ui, sans-serif; fill: #57534e; }
+    .kicker { font: 600 12px ui-sans-serif, system-ui, sans-serif; fill: #0f3d3e; letter-spacing: 0.04em; }
+    .line { stroke: #0f3d3e; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    .line-soft { stroke: #57534e; stroke-width: 1.25; fill: none; stroke-dasharray: 5 4; marker-end: url(#arrow); }
+  </style>
+  <rect class="bg" x="0" y="0" width="720" height="700" rx="8"/>
+
+  <text class="kicker" x="36" y="36">PUBLIC</text>
+  <rect class="box" x="250" y="48" width="220" height="52" rx="8"/>
+  <text class="label" x="360" y="70" text-anchor="middle">브라우저</text>
+  <text class="sub" x="360" y="88" text-anchor="middle">방문자가 여는 곳</text>
+
+  <path class="line" d="M 300 100 L 180 148"/>
+  <path class="line" d="M 420 100 L 540 148"/>
+
+  <rect class="box-pages" x="40" y="152" width="280" height="72" rx="8"/>
+  <text class="label" x="180" y="180" text-anchor="middle">GitHub Pages</text>
+  <text class="sub" x="180" y="200" text-anchor="middle">이 포트폴리오 · sonji0507.github.io</text>
+
+  <rect class="box" x="400" y="152" width="280" height="72" rx="8"/>
+  <text class="label" x="540" y="180" text-anchor="middle">Cloudflare Tunnel</text>
+  <text class="sub" x="540" y="200" text-anchor="middle">playground.sonjh.com</text>
+
+  <path class="line" d="M 540 224 L 540 268"/>
+
+  <rect class="box" x="400" y="272" width="280" height="56" rx="8"/>
+  <text class="label" x="540" y="294" text-anchor="middle">NPM</text>
+  <text class="sub" x="540" y="312" text-anchor="middle">TLS 종료 · Host 헤더 전달</text>
+
+  <path class="line" d="M 540 328 L 540 372"/>
+
+  <rect class="box" x="400" y="376" width="280" height="56" rx="8"/>
+  <text class="label" x="540" y="398" text-anchor="middle">Colima Ingress</text>
+  <text class="sub" x="540" y="416" text-anchor="middle">ingress-nginx · 클러스터 HTTP</text>
+
+  <path class="line" d="M 540 432 L 540 476"/>
+
+  <rect class="box" x="400" y="480" width="280" height="64" rx="8"/>
+  <text class="label" x="540" y="504" text-anchor="middle">playground Deployment</text>
+  <text class="sub" x="540" y="524" text-anchor="middle">replica 1 · namespace apps</text>
+
+  <text class="kicker" x="36" y="580">HOST · docker compose</text>
+  <rect class="box-host" x="40" y="596" width="200" height="64" rx="8"/>
+  <text class="label" x="140" y="622" text-anchor="middle">Postgres</text>
+  <text class="sub" x="140" y="642" text-anchor="middle">infra-network</text>
+
+  <rect class="box-host" x="260" y="596" width="200" height="64" rx="8"/>
+  <text class="label" x="360" y="622" text-anchor="middle">Redis</text>
+  <text class="sub" x="360" y="642" text-anchor="middle">infra-network</text>
+
+  <rect class="box-host" x="480" y="596" width="200" height="64" rx="8"/>
+  <text class="label" x="580" y="622" text-anchor="middle">MinIO API</text>
+  <text class="sub" x="580" y="642" text-anchor="middle">infra-network · :9000</text>
+
+  <path class="line-soft" d="M 470 544 L 140 592"/>
+  <path class="line-soft" d="M 540 544 L 360 592"/>
+  <path class="line-soft" d="M 610 544 L 580 592"/>
+</svg>

@@ -1,17 +1,11 @@
 ---
 title: Sonji
-description: 백엔드·플랫폼. 집에서 서버를 굴리는 미니 프로젝트를 진행 중입니다.
+description: 백엔드·플랫폼. 홈서버 미니 프로젝트를 진행 중입니다.
 ---
 
-<section class="hero">
-<p class="kicker">Backend · Platform</p>
-<h1>집에서 서버를 굴립니다.</h1>
-<p class="lede">백엔드와 배포를 만듭니다. 지금은 집 서버를 직접 올리는 일을 하고 있습니다.</p>
-</section>
-
 <section class="project" id="homeserver">
-<p class="kicker reveal">Mini project · 진행 중</p>
-<h2 class="reveal">홈서버</h2>
+<p class="kicker">Mini project · 진행 중</p>
+<h1>홈서버</h1>
 <p class="reveal">집 Mac Mini로 개인 인프라와 배포를 직접 돌리는 작업입니다. 클라우드 콘솔을 흉내 내는 게 아니라, 앱을 올렸다 내리고 저장소를 나누고 공개 면만 밖으로 내는 일을 실제로 굴려 보는 중입니다.</p>
 <p class="reveal">오래 남는 것(데이터베이스, 캐시, 파일 저장소, 프록시)은 호스트 위의 컨테이너로 묶어 두고, 웹앱은 Colima로 띄운 k3s에 올립니다. 데이터는 잘 안 건드리고 앱만 자주 갈아끼우려고 나눈 구성입니다.</p>
 <p class="reveal">앱 저장소는 컨테이너 이미지만 만들고, 인프라 저장소가 그 이미지를 받아 올립니다. 역할을 한 레포에 섞지 않습니다.</p>

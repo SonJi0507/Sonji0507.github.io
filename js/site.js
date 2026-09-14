@@ -59,21 +59,6 @@
     });
   };
 
-  const splitHero = () => {
-    const title = document.querySelector(".hero h1");
-    if (!title || reduce) return;
-    const text = title.textContent.trim();
-    title.textContent = "";
-    title.classList.add("split");
-    [...text].forEach((char, index) => {
-      const span = document.createElement("span");
-      span.textContent = char === " " ? "\u00a0" : char;
-      span.style.setProperty("--i", String(index));
-      title.append(span);
-    });
-  };
-
   spotlight();
-  splitHero();
   reveal();
 })();

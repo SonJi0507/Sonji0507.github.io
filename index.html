@@ -33,7 +33,7 @@
 <p class="reveal">밖에 내보내는 앱은 공유기 포트를 열지 않고 터널로 나갑니다. 인증서는 클러스터 밖에서 끊고, 그 위에 배포된 웹앱이 돌아가고 있습니다.</p>
 <p class="reveal">머신과 컨테이너 상태는 Beszel로, 배포한 서비스가 살아 있는지는 Uptime Kuma로 봅니다. 대시보드는 밖에 열지 않습니다.</p>
 
-<img class="reveal" src="/img/homelab.svg" alt="방문자는 포트폴리오와 배포된 앱으로 갈라진다. 앱은 터널과 프록시를 거쳐 쿠버네티스로 가고, 데이터는 호스트 컨테이너에 남는다. 관측은 호스트에서 한다.">
+<img class="reveal" src="/img/homelab.svg" alt="배포된 앱은 터널과 프록시를 거쳐 쿠버네티스로 간다. 데이터는 호스트 컨테이너에 남고, Beszel과 Uptime Kuma로 상태를 본다.">
 
 <ul class="points">
 <li class="reveal"><strong>상태와 앱을 나눔</strong> 데이터는 호스트에 두고, 웹앱만 클러스터에서 갈아끼웁니다.</li>

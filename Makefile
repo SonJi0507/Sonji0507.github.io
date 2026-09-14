@@ -10,8 +10,8 @@ export-root:
 	cp dist/index.html index.html
 	cp dist/.nojekyll .nojekyll
 	rm -rf about homelab css img
-	cp -R dist/about about
-	cp -R dist/homelab homelab
+	test -d dist/about && cp -R dist/about about || true
+	test -d dist/homelab && cp -R dist/homelab homelab || true
 	cp -R dist/css css
 	mkdir -p img
 	if [ -d dist/img ]; then find dist/img -type f ! -name '.*' -exec cp {} img/ \;; fi

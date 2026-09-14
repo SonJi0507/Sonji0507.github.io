@@ -4,29 +4,61 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sonji</title>
-  <meta name="description" content="백엔드·플랫폼 개발자. 집 Mac Mini에서 홈랩을 운영합니다.">
+  <meta name="description" content="백엔드·플랫폼. 집에서 서버를 굴리는 미니 프로젝트를 진행 중입니다.">
   <link rel="canonical" href="https://sonji0507.github.io/">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+  <div class="grain" aria-hidden="true"></div>
   <header class="site-header">
     <a class="wordmark" href="/">Sonji</a>
-    <nav aria-label="주요">
-      <ul>
-        <li><a href="/" aria-current="page">홈</a></li>
-        <li><a href="/homelab/">홈서버</a></li>
-        <li><a href="/about/">소개</a></li>
-      </ul>
-    </nav>
+    <a class="header-link" href="https://github.com/SonJi0507">GitHub</a>
   </header>
   <main>
-    <h1 id="백엔드-플랫폼">백엔드 · 플랫폼</h1>
-<p>백엔드와 플랫폼을 만듭니다. 집 Mac Mini에서 Docker Compose와 Kubernetes로 홈랩을 운영합니다.</p>
-<p>이 사이트는 GitHub Pages에서 서빙합니다. 홈랩 문서는 여기에 있고, 사이트 자체는 홈서버에서 호스팅하지 않습니다.</p>
-<p><a href="/homelab/">홈서버에서 Compose와 k8s를 나눈 이유</a> · <a href="https://github.com/SonJi0507">GitHub</a></p>
+    <section class="hero">
+<p class="kicker">Backend · Platform</p>
+<h1>집에서 서버를 굴립니다.</h1>
+<p class="lede">백엔드와 배포를 만듭니다. 이 페이지는 포트폴리오이고, GitHub Pages에서 열립니다. 아래 홈서버가 이 사이트를 호스팅하지는 않습니다.</p>
+</section>
+
+<section class="project" id="homeserver">
+<p class="kicker">Mini project · 진행 중</p>
+<h2>홈서버</h2>
+<p>집 Mac Mini 한 대로 개인 인프라와 배포를 직접 돌리는 작업입니다. 클라우드 콘솔을 흉내 내는 게 아니라, 앱을 올렸다 내리고 저장소를 나누고 공개 면만 밖으로 내는 일을 실제로 굴려 보는 중입니다.</p>
+<p>오래 남는 것(데이터베이스, 캐시, 파일 저장소, 프록시)은 호스트 위의 컨테이너로 묶어 두고, 웹앱만 쿠버네티스에 올립니다. 데이터는 잘 안 건드리고 앱만 자주 갈아끼우려고 나눈 구성입니다.</p>
+<p>앱 저장소는 컨테이너 이미지만 만들고, 인프라 저장소가 그 이미지를 받아 올립니다. 역할을 한 레포에 섞지 않습니다.</p>
+<p>파일 저장소는 앱마다 열쇠를 따로 줍니다. 관리자 계정은 앱에 넣지 않고, 관리 화면은 인터넷에 열지 않습니다.</p>
+<p>밖에 내보내는 앱은 공유기 포트를 열지 않고 터널로 나갑니다. 인증서는 클러스터 밖에서 끊고, 그 안에 배포된 웹앱이 돌아가고 있습니다.</p>
+<p>노드는 하나뿐입니다. 고가용성 클러스터라고 말하지 않습니다.</p>
+
+<img src="/img/homelab.svg" alt="방문자는 이 사이트와 배포된 앱으로 갈라진다. 앱은 터널과 프록시를 거쳐 쿠버네티스로 가고, 데이터는 호스트 컨테이너에 남는다.">
+
+<ul class="points">
+<li><strong>상태와 앱을 나눔</strong> 데이터는 호스트에, 웹앱은 클러스터에. 한 대짜리 머신에서 운영 부담을 나누기 위함입니다.</li>
+<li><strong>빌드와 배포를 나눔</strong> 앱은 이미지만 만들고, 인프라가 올려서 교체합니다.</li>
+<li><strong>열쇠는 앱 단위</strong> 저장소 루트 키를 앱에 넣지 않습니다.</li>
+<li><strong>공개 면을 좁힘</strong> 이 사이트는 Pages, 배포된 앱만 터널. 관리 도구는 밖에 없습니다.</li>
+</ul>
+</section>
+
+<section class="stack" id="stack">
+<p class="kicker">Using</p>
+<ul class="chips">
+<li>Python</li>
+<li>Django</li>
+<li>FastAPI</li>
+<li>PostgreSQL</li>
+<li>Redis</li>
+<li>Docker</li>
+<li>Kubernetes</li>
+<li>Terraform</li>
+</ul>
+</section>
   </main>
   <footer class="site-footer">
-    <p>이 사이트는 GitHub Pages에서 서빙합니다.</p>
+    <p>이 페이지는 GitHub Pages에서 열립니다.</p>
   </footer>
 </body>
 </html>

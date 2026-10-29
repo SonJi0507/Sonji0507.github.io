@@ -44,7 +44,7 @@
 
   <rect class="box" x="210" y="394" width="300" height="52" rx="10"/>
   <text class="label" x="360" y="416" text-anchor="middle">배포된 앱</text>
-  <text class="sub" x="360" y="432" text-anchor="middle">클러스터 Workload</text>
+  <text class="sub" x="360" y="432" text-anchor="middle">k3s에 배포</text>
 
   <text class="kicker" x="36" y="478">HOST</text>
   <rect class="box" x="40" y="492" width="200" height="52" rx="10"/>

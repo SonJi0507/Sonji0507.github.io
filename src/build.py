@@ -157,7 +157,7 @@ def render_catalog(env: Environment) -> list[str]:
             DIST / "projects" / "index.html",
             "/projects/",
             f"프로젝트 · {SITE['name']}",
-            "직접 만들어 운영하는 서비스와 개인 인프라.",
+            "운영 중인 웹 서비스와, 그 서비스를 올리는 홈서버.",
             index_body,
         ),
     ]

@@ -3,129 +3,155 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sonji</title>
-  <meta name="description" content="백엔드·플랫폼. 홈서버 미니 프로젝트를 진행 중입니다.">
+  <title>손지혁 · Python 백엔드 개발자</title>
+  <meta name="description" content="빠르게 배우고 바로 적용하는 Python 백엔드 개발자 손지혁입니다. API, 인증, 비동기 처리, 관측까지 서비스에 반영해 온 경력을 정리했습니다.">
+  <meta name="author" content="손지혁">
+  <meta name="theme-color" content="#0b0c0e">
   <link rel="canonical" href="https://sonji0507.github.io/">
+  <meta property="og:title" content="손지혁 · Python 백엔드 개발자">
+  <meta property="og:description" content="빠르게 배우고 바로 적용하는 Python 백엔드 개발자 손지혁입니다. API, 인증, 비동기 처리, 관측까지 서비스에 반영해 온 경력을 정리했습니다.">
+  <meta property="og:url" content="https://sonji0507.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <link rel="stylesheet" href="/css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
+  <a class="skip" href="#content">본문으로 건너뛰기</a>
   <header class="site-header">
-    <a class="wordmark" href="/">Sonji</a>
-    <a class="header-link" href="https://github.com/SonJi0507">GitHub</a>
+    <div class="header-inner">
+      <div class="header-bar">
+        <a class="wordmark" href="/">손지혁</a>
+        <a class="header-link" href="https://github.com/SonJi0507" rel="me noopener noreferrer">GitHub</a>
+      </div>
+      <nav class="site-nav" aria-label="주요">
+        <a href="/#about" aria-current="page">소개</a>
+        <a href="/#skills">기술</a>
+        <a href="/experience/">경력</a>
+        <a href="/projects/">프로젝트</a>
+        <a href="/#contact">연락</a>
+      </nav>
+    </div>
   </header>
-  <main>
-    <section class="project" id="homeserver">
-<p class="kicker">Mini project · 진행 중</p>
-<h1>홈서버</h1>
-<p class="reveal">집 Mac Mini로 개인 인프라와 배포를 직접 돌리는 작업입니다. 클라우드 콘솔을 흉내 내는 게 아니라, 앱을 올렸다 내리고 저장소를 나누고 공개 면만 밖으로 내는 일을 실제로 굴려 보는 중입니다.</p>
-<p class="reveal">오래 남는 것(데이터베이스, 캐시, 파일 저장소, 프록시)은 호스트 위의 컨테이너로 묶어 두고, 웹앱은 Colima로 띄운 k3s에 올립니다. 데이터는 잘 안 건드리고 앱만 자주 갈아끼우려고 나눈 구성입니다.</p>
-<p class="reveal">앱 저장소는 컨테이너 이미지만 만들고, 인프라 저장소가 그 이미지를 받아 올립니다. 역할을 한 레포에 섞지 않습니다.</p>
-<p class="reveal">파일 저장소는 앱마다 접근 권한을 나눕니다. 관리자 계정은 앱에 넣지 않고, 관리 화면은 인터넷에 열지 않습니다.</p>
-<p class="reveal">밖에 내보내는 앱은 공유기 포트를 열지 않고 Cloudflare Tunnel로 나갑니다. 앞에서 Nginx Proxy Manager가 인증서를 끊고, 그 뒤에 배포된 웹앱이 돌아가고 있습니다.</p>
-<p class="reveal">머신과 컨테이너 상태는 Beszel로, 배포한 서비스가 살아 있는지는 Uptime Kuma로 봅니다. 대시보드는 밖에 열지 않습니다.</p>
-
-<figure class="diagram reveal"><svg class="diagram-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 760" role="img" aria-labelledby="title desc">
-  <title id="title">홈서버 구성</title>
-  <desc id="desc">배포된 앱은 Cloudflare Tunnel과 Nginx Proxy Manager를 거쳐 Colima k3s로 간다. 데이터는 호스트 컨테이너에 남고, Beszel과 Uptime Kuma로 상태를 본다. 알람은 Slack으로 받는다.</desc>
-  <defs>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-      <path d="M0 0 L8 4 L0 8 z" fill="#d4a574"/>
-    </marker>
-  </defs>
-  <style>
-    .panel { fill: #14161c; }
-    .box { fill: #1b1e26; stroke: rgba(242,238,230,0.14); stroke-width: 1.2; }
-    .label { font: 600 14px system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; fill: #f2eee6; }
-    .sub { font: 12px system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; fill: #9c968b; }
-    .kicker { font: 650 11px system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; fill: #d4a574; letter-spacing: 0.14em; }
-    .line { stroke: #d4a574; stroke-width: 1.35; fill: none; marker-end: url(#arrow); }
-    .line-soft { stroke: #9c968b; stroke-width: 1.15; fill: none; stroke-dasharray: 5 4; marker-end: url(#arrow); }
-  </style>
-  <rect class="panel" x="0" y="0" width="720" height="760" rx="16"/>
-
-  <text class="kicker" x="36" y="36">PUBLIC</text>
-  <rect class="box" x="210" y="50" width="300" height="52" rx="10"/>
-  <text class="label" x="360" y="72" text-anchor="middle">방문자</text>
-  <text class="sub" x="360" y="88" text-anchor="middle">브라우저</text>
-
-  <path class="line" d="M 360 102 L 360 132"/>
-
-  <rect class="box" x="210" y="136" width="300" height="52" rx="10"/>
-  <text class="label" x="360" y="158" text-anchor="middle">Cloudflare Tunnel</text>
-  <text class="sub" x="360" y="174" text-anchor="middle">공유기 포트 없이 공개</text>
-
-  <path class="line" d="M 360 188 L 360 218"/>
-
-  <rect class="box" x="210" y="222" width="300" height="52" rx="10"/>
-  <text class="label" x="360" y="244" text-anchor="middle">Nginx Proxy Manager</text>
-  <text class="sub" x="360" y="260" text-anchor="middle">인증서는 여기서 종료</text>
-
-  <path class="line" d="M 360 274 L 360 304"/>
-
-  <rect class="box" x="210" y="308" width="300" height="52" rx="10"/>
-  <text class="label" x="360" y="330" text-anchor="middle">Colima · k3s</text>
-  <text class="sub" x="360" y="346" text-anchor="middle">웹앱만 올림</text>
-
-  <path class="line" d="M 360 360 L 360 390"/>
-
-  <rect class="box" x="210" y="394" width="300" height="52" rx="10"/>
-  <text class="label" x="360" y="416" text-anchor="middle">배포된 앱</text>
-  <text class="sub" x="360" y="432" text-anchor="middle">클러스터 위 워크로드</text>
-
-  <text class="kicker" x="36" y="478">HOST</text>
-  <rect class="box" x="40" y="492" width="200" height="52" rx="10"/>
-  <text class="label" x="140" y="514" text-anchor="middle">Postgres</text>
-  <text class="sub" x="140" y="530" text-anchor="middle">데이터</text>
-
-  <rect class="box" x="260" y="492" width="200" height="52" rx="10"/>
-  <text class="label" x="360" y="514" text-anchor="middle">Redis</text>
-  <text class="sub" x="360" y="530" text-anchor="middle">캐시</text>
-
-  <rect class="box" x="480" y="492" width="200" height="52" rx="10"/>
-  <text class="label" x="580" y="514" text-anchor="middle">파일 저장소</text>
-  <text class="sub" x="580" y="530" text-anchor="middle">앱별로만 접근</text>
-
-  <path class="line-soft" d="M 280 446 L 140 488"/>
-  <path class="line-soft" d="M 360 446 L 360 488"/>
-  <path class="line-soft" d="M 440 446 L 580 488"/>
-
-  <text class="kicker" x="36" y="574">WATCH</text>
-  <rect class="box" x="40" y="588" width="310" height="52" rx="10"/>
-  <text class="label" x="195" y="610" text-anchor="middle">Beszel</text>
-  <text class="sub" x="195" y="626" text-anchor="middle">머신 · 컨테이너</text>
-
-  <rect class="box" x="370" y="588" width="310" height="52" rx="10"/>
-  <text class="label" x="525" y="610" text-anchor="middle">Uptime Kuma</text>
-  <text class="sub" x="525" y="626" text-anchor="middle">서비스가 살아 있는지</text>
-
-  <path class="line-soft" d="M 195 640 L 360 668"/>
-  <path class="line-soft" d="M 525 640 L 360 668"/>
-
-  <rect class="box" x="210" y="672" width="300" height="52" rx="10"/>
-  <text class="label" x="360" y="694" text-anchor="middle">Slack</text>
-  <text class="sub" x="360" y="710" text-anchor="middle">알람</text>
-</svg></figure>
+  <main id="content">
+    <section class="hero" id="about">
+<p class="kicker">Python Backend</p>
+<h1>손지혁</h1>
+<p class="lede reveal">빠르게 배우고 바로 적용하는 Python 백엔드 개발자입니다.</p>
+<p class="reveal">전기·안전 분야 엔지니어로 일하다 개발로 전향했습니다. 이후 Python 기반 백엔드와 서버 개발을 중심으로, API·인증·비동기 처리·클라우드 연동을 서비스에 반영해 왔습니다.</p>
+<p class="reveal">지금은 사실상 단독 백엔드 개발자로, 외부 개발자용 음원 분석 API 플랫폼을 프로토타입에서 프로덕션으로 다시 설계하고 운영합니다. 개발로 팀에 기여할 방법을 찾고, 만든 결과가 실제로 쓰이게 만드는 일을 좋아합니다.</p>
+<ul class="facts reveal">
+<li><strong>4년 7개월</strong><span>개발 경력 · 2026.10 기준</span></li>
+<li><strong>500ms → 5ms</strong><span>주요 테이블 조회 p95</span></li>
+<li><strong>2s → 0.24s</strong><span>API 응답 p95</span></li>
+</ul>
+<p class="actions reveal"><a href="/experience/">경력 보기</a><a href="#projects">프로젝트 보기</a></p>
 </section>
 
-<section class="stack reveal" id="stack">
-<p class="kicker">Using</p>
-<ul class="chips">
-<li>PostgreSQL</li>
-<li>Redis</li>
-<li>Docker</li>
-<li>Colima</li>
-<li>k3s</li>
-<li>Cloudflare</li>
-<li>Nginx Proxy Manager</li>
-<li>Beszel</li>
-<li>Uptime Kuma</li>
-</ul>
+<section class="block">
+<div id="skills">
+<p class="kicker">Skills</p>
+<h2>기술</h2>
+<p>업무와 사이드 프로젝트에서 실제로 쓰는 것들입니다.</p>
+<div class="skill-grid">
+<div>
+<h3>언어</h3>
+<ul class="chips"><li>Python</li><li>SQL</li><li>TypeScript</li></ul>
+</div>
+<div>
+<h3>백엔드</h3>
+<ul class="chips"><li>FastAPI</li><li>Django</li><li>Django REST Framework</li><li>Celery</li><li>pytest</li></ul>
+</div>
+<div>
+<h3>데이터</h3>
+<ul class="chips"><li>PostgreSQL</li><li>Redis</li><li>RabbitMQ</li></ul>
+</div>
+<div>
+<h3>인프라</h3>
+<ul class="chips"><li>GCP</li><li>NCP</li><li>AWS</li><li>Docker</li><li>Terraform</li><li>GitHub Actions</li></ul>
+</div>
+<div>
+<h3>관측</h3>
+<ul class="chips"><li>OpenTelemetry</li><li>Prometheus</li><li>Grafana</li><li>Loki</li><li>Tempo</li><li>Sentry</li></ul>
+</div>
+<div>
+<h3>기타</h3>
+<ul class="chips"><li>JWT · OAuth</li><li>Mailjet</li><li>Git</li></ul>
+</div>
+</div>
+</div>
+</section>
+
+<section class="block" id="now">
+<p class="kicker">Now</p>
+<h2>지금</h2>
+<p>주식회사 미피아에서 백엔드 개발자로 일하고 있습니다. 2025년 5월부터 재직 중이고, 그 전에는 얼리페이, 웰컴에프앤디, 브랜드콘텐츠에서 개발했습니다.</p>
+<p>결제·과금 체계를 하나의 Wallet 파이프라인으로 모으고, 관측이 없던 서비스에 메트릭·로그·트레이스를 붙이고, 인덱스로 주요 조회를 100배 가까이 줄인 일이 최근의 중심입니다.</p>
+<p class="actions"><a href="/experience/">경력 전체</a></p>
+</section>
+
+<section class="block">
+<div id="projects">
+<p class="kicker">Projects</p>
+<h2>프로젝트</h2>
+<p>직접 만들어 운영하는 것, 팀에 기여한 것, 공부하면서 남긴 기록을 나눠 적었습니다.</p>
+<div class="cards">
+<a class="card" href="/projects/our-bible-note/">
+<p class="kicker">01 · 사이드 프로젝트</p>
+<h3>OurBibleNote</h3>
+<p>성경 구절의 관계를 그래프로 보고 QT 노트를 잇는 웹 서비스. 기획부터 운영까지 혼자 맡았습니다.</p>
+<p class="card-meta">Django · Next.js · PostgreSQL<span class="card-go">자세히</span></p>
+</a>
+<a class="card" href="/projects/homelab/">
+<p class="kicker">02 · 개인 인프라</p>
+<h3>홈서버</h3>
+<p>집 Mac Mini에서 데이터와 앱의 수명을 나누고, 공개할 면만 밖으로 열어 서비스를 올립니다.</p>
+<p class="card-meta">Docker · k3s · Cloudflare<span class="card-go">자세히</span></p>
+</a>
+<a class="card" href="/projects/ai-concentration/">
+<p class="kicker">03 · 팀 프로젝트 · 2021</p>
+<h3>우리AI 집중도 리포트</h3>
+<p>딥러닝 검사 결과를 웹에서 읽는 Django 리포트. 홈의 감정·등급과 베스트샷을 맡았습니다.</p>
+<p class="card-meta">Django · MySQL · Chart.js<span class="card-go">자세히</span></p>
+</a>
+<a class="card" href="/projects/study-log/">
+<p class="kicker">04 · 학습 기록</p>
+<h3>study-log</h3>
+<p>Celery, RabbitMQ, 비동기 Python, Next.js처럼 일에 쓰는 도구를 작게 따라 만들고 남긴 저장소입니다.</p>
+<p class="card-meta">Python · Next.js · RabbitMQ<span class="card-go">자세히</span></p>
+</a>
+</div>
+</div>
+</section>
+
+<section class="block">
+<div id="contact">
+<p class="kicker">Contact</p>
+<h2>연락</h2>
+<p>메일과 GitHub으로 연락주시면 됩니다.</p>
+<dl class="contact-list">
+<div>
+<dt>이메일</dt>
+<dd><a href="mailto:jhson0507@gmail.com">jhson0507@gmail.com</a></dd>
+</div>
+<div>
+<dt>GitHub</dt>
+<dd><a href="https://github.com/SonJi0507" rel="me noopener noreferrer">github.com/SonJi0507</a></dd>
+</div>
+<div>
+<dt>서비스</dt>
+<dd><a href="https://ourbiblenote.com" rel="noopener noreferrer">ourbiblenote.com</a></dd>
+</div>
+</dl>
+</div>
 </section>
   </main>
-  <footer class="site-footer"></footer>
+  <footer class="site-footer">
+    <p><a href="mailto:jhson0507@gmail.com">jhson0507@gmail.com</a> · <a href="https://github.com/SonJi0507" rel="me noopener noreferrer">GitHub</a></p>
+  </footer>
   <script src="/js/site.js" defer></script>
 </body>
 </html>

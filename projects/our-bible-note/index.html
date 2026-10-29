@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OurBibleNote · 손지혁</title>
+  <meta name="description" content="성경 구절의 관계를 그래프로 보고 QT 노트를 잇는 웹 서비스 OurBibleNote. 기획부터 운영까지 손지혁이 혼자 맡은 사이드 프로젝트.">
+  <meta name="author" content="손지혁">
+  <meta name="theme-color" content="#0b0c0e">
+  <link rel="canonical" href="https://sonji0507.github.io/projects/our-bible-note/">
+  <meta property="og:title" content="OurBibleNote · 손지혁">
+  <meta property="og:description" content="성경 구절의 관계를 그래프로 보고 QT 노트를 잇는 웹 서비스 OurBibleNote. 기획부터 운영까지 손지혁이 혼자 맡은 사이드 프로젝트.">
+  <meta property="og:url" content="https://sonji0507.github.io/projects/our-bible-note/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <a class="skip" href="#content">본문으로 건너뛰기</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-bar">
+        <a class="wordmark" href="/">손지혁</a>
+        <a class="header-link" href="https://github.com/SonJi0507" rel="me noopener noreferrer">GitHub</a>
+      </div>
+      <nav class="site-nav" aria-label="주요">
+        <a href="/#about">소개</a>
+        <a href="/#skills">기술</a>
+        <a href="/experience/">경력</a>
+        <a href="/projects/" aria-current="page">프로젝트</a>
+        <a href="/#contact">연락</a>
+      </nav>
+    </div>
+  </header>
+  <main id="content">
+    <section class="page-hero">
+<p class="back"><a href="/projects/">프로젝트</a></p>
+<p class="kicker">Side project · 운영 중</p>
+<h1>OurBibleNote</h1>
+<p class="lede">성경 구절 간의 관계를 그래프로 시각화하고, QT 노트를 연결하는 웹 서비스입니다. 말씀을 잇는 지도로, 구약과 신약을 한 장에서 보고 묵상의 흔적을 따라 읽습니다.</p>
+<p class="actions"><a href="https://ourbiblenote.com" rel="noopener noreferrer">ourbiblenote.com</a></p>
+</section>
+
+<section class="prose">
+<h2>무엇을 만드나</h2>
+<p>한 장을 펼치면 이어진 장들이 같이 보이고, 연결된 구절을 눌러 다음 장으로 넘어갑니다. 그룹과 묵상 노트를 나눠 남길 수 있습니다. 라이브 사이트는 <a href="https://ourbiblenote.com" rel="noopener noreferrer">ourbiblenote.com</a>입니다. 코드 저장소는 비공개라 여기에 링크하지 않습니다.</p>
+
+<h2>문제</h2>
+<p>성경은 구절이 서로를 가리키는데, 그 관계를 한 장의 지도로 보면서 묵상 노트까지 같은 자리에 두기가 어려웠습니다. 역본을 바꿔도 같은 자리가 이어져야 했습니다.</p>
+
+<h2>역할</h2>
+<p>혼자 기획부터 개발, 배포, 운영까지 맡았습니다.</p>
+
+<h2>기술</h2>
+<ul class="chips">
+<li>Django</li><li>DRF</li><li>Python</li><li>Next.js</li><li>React</li><li>TypeScript</li><li>PostgreSQL</li><li>Redis</li><li>Docker</li><li>GitHub Actions</li><li>Playwright</li>
+</ul>
+
+<h2>기술적으로 손댄 부분</h2>
+<ul>
+<li>Django 6 + DRF 백엔드(Python 3.14, uv)와 Next.js 15(App Router, React 19, TypeScript) 프론트엔드를 한 모노레포로 구성.</li>
+<li>성경 4개 역본(개역개정·개역한글·NIV·NLT)을 장 단위 그래프 노드로 구성하고, 노드·엣지·태그·그룹 공유 API를 설계.</li>
+<li>Google·Kakao·Naver 소셜 로그인. state 검증과 Django 세션 쿠키 기반 인증.</li>
+<li>멱등성 있는 데이터 시딩. Excel에서 Bible 테이블을 거쳐 그래프 노드까지.</li>
+<li>GitHub Actions CI. ruff·ty·마이그레이션 누락 검사·pytest(PostgreSQL 서비스), 프론트 lint·tsc·Vitest·Playwright E2E(CSP 위반 0건 검사 포함).</li>
+<li>홈서버에 Docker Compose로 직접 운영. PostgreSQL 18, Redis, 리버스 프록시. nonce 기반 CSP 등 보안 헤더 적용. 인프라 윤곽은 <a href="/projects/homelab/">홈서버</a>에 적었습니다.</li>
+<li>AI 코딩 도구를 쓰는 워크플로. 에이전트용 가이드를 두고, lint·타입 검사·테스트·E2E를 CI로 강제해 도구가 작성한 코드도 같은 기준으로 검증.</li>
+</ul>
+</section>
+  </main>
+  <footer class="site-footer">
+    <p><a href="mailto:jhson0507@gmail.com">jhson0507@gmail.com</a> · <a href="https://github.com/SonJi0507" rel="me noopener noreferrer">GitHub</a></p>
+  </footer>
+  <script src="/js/site.js" defer></script>
+</body>
+</html>

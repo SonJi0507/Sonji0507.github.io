@@ -1,5 +1,8 @@
 .PHONY: build export-root serve qr
 
+# dist/ 에서 레포 루트로 복사하는 페이지 디렉터리.
+PAGE_DIRS := experience projects
+
 build:
 	uv run python src/build.py
 	$(MAKE) export-root
@@ -9,13 +12,14 @@ build:
 export-root:
 	cp dist/index.html index.html
 	cp dist/.nojekyll .nojekyll
-	rm -rf about homelab css img js
-	test -d dist/about && cp -R dist/about about || true
-	test -d dist/homelab && cp -R dist/homelab homelab || true
+	rm -rf css js img about homelab $(PAGE_DIRS)
 	cp -R dist/css css
-	test -d dist/js && cp -R dist/js js || true
+	if [ -d dist/js ]; then cp -R dist/js js; fi
 	mkdir -p img
 	if [ -d dist/img ]; then find dist/img -type f ! -name '.*' -exec cp {} img/ \;; fi
+	for name in $(PAGE_DIRS); do \
+	  if [ -d dist/$$name ]; then cp -R dist/$$name $$name; fi; \
+	done
 
 serve: build
 	python3 -m http.server 8000 --directory dist

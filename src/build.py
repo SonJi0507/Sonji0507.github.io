@@ -56,8 +56,11 @@ def check_images(body: str, source: Path) -> None:
 
 def page_output(md_path: Path) -> tuple[Path, str]:
     rel = md_path.relative_to(PAGES)
-    if rel.as_posix() == "index.md":
-        return DIST / "index.html", "/"
+    if rel.name == "index.md":
+        parent = rel.parent
+        if parent.as_posix() == ".":
+            return DIST / "index.html", "/"
+        return DIST / parent / "index.html", f"/{parent.as_posix()}/"
     slug = rel.with_suffix("")
     return DIST / slug / "index.html", f"/{slug.as_posix()}/"
 

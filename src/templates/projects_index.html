@@ -1,0 +1,17 @@
+<section class="page-hero">
+  <p class="kicker">Projects</p>
+  <h1>프로젝트</h1>
+  <p class="lede">집 Mac Mini에서 직접 운영하는 홈서버입니다.</p>
+  <p class="actions"><a href="/assets/portfolio.pdf">PDF 다운로드</a></p>
+</section>
+
+<div class="cards">
+  {% for project in projects %}
+  <a class="card" href="/projects/{{ project.slug }}/">
+    <p class="kicker">{{ "%02d"|format(loop.index) }} · {{ project.kicker }}</p>
+    <h3>{{ project.title }}</h3>
+    <p>{{ project.summary }}</p>
+    <p class="card-meta">{{ project.stack[:3]|join(" · ") }}{% if project.when %} · {{ project.when }}{% endif %}<span class="card-go">자세히</span></p>
+  </a>
+  {% endfor %}
+</div>

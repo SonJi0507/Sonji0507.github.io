@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>홈서버 · 손지혁</title>
+  <meta name="description" content="집 Mac Mini에서 앱 Repository와 인프라 Repository를 분리해 배포하는 홈서버.">
+  <meta name="author" content="손지혁">
+  <meta name="theme-color" content="#0b0c0e">
+  <link rel="canonical" href="https://sonji0507.github.io/projects/homelab/">
+  <meta property="og:title" content="홈서버 · 손지혁">
+  <meta property="og:description" content="집 Mac Mini에서 앱 Repository와 인프라 Repository를 분리해 배포하는 홈서버.">
+  <meta property="og:url" content="https://sonji0507.github.io/projects/homelab/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <a class="skip" href="#content">본문으로 건너뛰기</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-bar">
+        <a class="wordmark" href="/">손지혁</a>
+        <a class="header-link" href="https://github.com/SonJi0507" rel="me noopener noreferrer">GitHub</a>
+      </div>
+      <nav class="site-nav" aria-label="주요">
+        <a href="/#about">소개</a>
+        <a href="/projects/" aria-current="page">프로젝트</a>
+        <a href="/#contact">연락</a>
+        <a href="/assets/portfolio.pdf">PDF</a>
+      </nav>
+    </div>
+  </header>
+  <main id="content">
+    <section class="page-hero">
+  <p class="back"><a href="/projects/">프로젝트</a></p>
+  <p class="kicker">개인 인프라 · 진행 중</p>
+  <h1>홈서버</h1>
+  <p class="lede">집 Mac Mini에서 개인 인프라와 배포 환경을 직접 구축하고 운영합니다. 외부에는 서비스에 필요한 부분만 엽니다.</p>
+  
+</section>
+
+<section class="prose">
+  <h2>문제</h2>
+  <p>PostgreSQL, Redis, 파일 Storage, Reverse Proxy는 자주 바꾸지 않습니다. 웹앱은 자주 바꿉니다. 그래서 데이터와 앱을 한곳에 두지 않았습니다.</p>
+  <h2>역할</h2>
+  <p>인프라를 직접 구성하고 운영합니다. 인프라 Repository는 비공개입니다.</p>
+  <h2>기술</h2>
+  <ul class="chips">
+    <li>PostgreSQL</li><li>Redis</li><li>Docker</li><li>Colima</li><li>k3s</li><li>Cloudflare</li><li>Nginx Proxy Manager</li><li>Beszel</li><li>Uptime Kuma</li>
+  </ul>
+  <h2>기술적으로 손댄 부분</h2>
+  <ul>
+    <li>PostgreSQL, Redis, 파일 Storage, Reverse Proxy는 Host의 Container로 둡니다. 웹앱은 Colima로 띄운 k3s에 올립니다.</li><li>앱 Repository는 Container Image만 만듭니다. 비공개인 인프라 Repository가 그 Image를 k3s에 배포합니다.</li><li>파일 Storage는 앱마다 접근 권한을 나눕니다. 관리자 계정은 앱에 넣지 않고, 관리 화면은 인터넷에 열지 않습니다.</li><li>외부 앱은 공유기 포트를 열지 않습니다. Cloudflare Tunnel로 연결하고, TLS Termination은 Nginx Proxy Manager에서 합니다.</li><li>머신과 Container 상태는 Beszel로 보고, 서비스가 떠 있는지는 Uptime Kuma로 확인합니다. 두 대시보드는 인터넷에 열지 않습니다.</li>
+  </ul>
+  
+  <figure class="diagram reveal"><svg class="diagram-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 760" role="img" aria-labelledby="title desc">
+  <title id="title">홈서버 구성</title>
+  <desc id="desc">배포된 앱은 Cloudflare Tunnel과 Nginx Proxy Manager를 거쳐 Colima k3s로 간다. 데이터는 Host의 Container에 남고, Beszel과 Uptime Kuma로 상태를 본다. 알람은 Slack으로 받는다.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 z" fill="#d4a574"/>
+    </marker>
+  </defs>
+  <style>
+    .panel { fill: #14161c; }
+    .box { fill: #1b1e26; stroke: rgba(242,238,230,0.14); stroke-width: 1.2; }
+    .label { font: 600 14px system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; fill: #f2eee6; }
+    .sub { font: 12px system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; fill: #9c968b; }
+    .kicker { font: 650 11px system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; fill: #d4a574; letter-spacing: 0.14em; }
+    .line { stroke: #d4a574; stroke-width: 1.35; fill: none; marker-end: url(#arrow); }
+    .line-soft { stroke: #9c968b; stroke-width: 1.15; fill: none; stroke-dasharray: 5 4; marker-end: url(#arrow); }
+  </style>
+  <rect class="panel" x="0" y="0" width="720" height="760" rx="16"/>
+
+  <text class="kicker" x="36" y="36">PUBLIC</text>
+  <rect class="box" x="210" y="50" width="300" height="52" rx="10"/>
+  <text class="label" x="360" y="72" text-anchor="middle">방문자</text>
+  <text class="sub" x="360" y="88" text-anchor="middle">브라우저</text>
+
+  <path class="line" d="M 360 102 L 360 132"/>
+
+  <rect class="box" x="210" y="136" width="300" height="52" rx="10"/>
+  <text class="label" x="360" y="158" text-anchor="middle">Cloudflare Tunnel</text>
+  <text class="sub" x="360" y="174" text-anchor="middle">공유기 포트 없이 공개</text>
+
+  <path class="line" d="M 360 188 L 360 218"/>
+
+  <rect class="box" x="210" y="222" width="300" height="52" rx="10"/>
+  <text class="label" x="360" y="244" text-anchor="middle">Nginx Proxy Manager</text>
+  <text class="sub" x="360" y="260" text-anchor="middle">TLS Termination</text>
+
+  <path class="line" d="M 360 274 L 360 304"/>
+
+  <rect class="box" x="210" y="308" width="300" height="52" rx="10"/>
+  <text class="label" x="360" y="330" text-anchor="middle">Colima · k3s</text>
+  <text class="sub" x="360" y="346" text-anchor="middle">웹앱만 올림</text>
+
+  <path class="line" d="M 360 360 L 360 390"/>
+
+  <rect class="box" x="210" y="394" width="300" height="52" rx="10"/>
+  <text class="label" x="360" y="416" text-anchor="middle">배포된 앱</text>
+  <text class="sub" x="360" y="432" text-anchor="middle">k3s에 배포</text>
+
+  <text class="kicker" x="36" y="478">HOST</text>
+  <rect class="box" x="40" y="492" width="200" height="52" rx="10"/>
+  <text class="label" x="140" y="514" text-anchor="middle">Postgres</text>
+  <text class="sub" x="140" y="530" text-anchor="middle">데이터</text>
+
+  <rect class="box" x="260" y="492" width="200" height="52" rx="10"/>
+  <text class="label" x="360" y="514" text-anchor="middle">Redis</text>
+  <text class="sub" x="360" y="530" text-anchor="middle">캐시</text>
+
+  <rect class="box" x="480" y="492" width="200" height="52" rx="10"/>
+  <text class="label" x="580" y="514" text-anchor="middle">파일 Storage</text>
+  <text class="sub" x="580" y="530" text-anchor="middle">앱별로만 접근</text>
+
+  <path class="line-soft" d="M 280 446 L 140 488"/>
+  <path class="line-soft" d="M 360 446 L 360 488"/>
+  <path class="line-soft" d="M 440 446 L 580 488"/>
+
+  <text class="kicker" x="36" y="574">WATCH</text>
+  <rect class="box" x="40" y="588" width="310" height="52" rx="10"/>
+  <text class="label" x="195" y="610" text-anchor="middle">Beszel</text>
+  <text class="sub" x="195" y="626" text-anchor="middle">머신 · Container</text>
+
+  <rect class="box" x="370" y="588" width="310" height="52" rx="10"/>
+  <text class="label" x="525" y="610" text-anchor="middle">Uptime Kuma</text>
+  <text class="sub" x="525" y="626" text-anchor="middle">서비스가 살아 있는지</text>
+
+  <path class="line-soft" d="M 195 640 L 360 668"/>
+  <path class="line-soft" d="M 525 640 L 360 668"/>
+
+  <rect class="box" x="210" y="672" width="300" height="52" rx="10"/>
+  <text class="label" x="360" y="694" text-anchor="middle">Slack</text>
+  <text class="sub" x="360" y="710" text-anchor="middle">알람</text>
+</svg></figure>
+  
+  <h2>결과</h2>
+  <ul>
+    <li>개인 웹 서비스를 이 구성 위에서 운영합니다.</li><li>외부에 공개하는 서비스와 내부 관리 도구를 분리해, 대시보드와 관리 화면은 인터넷에 노출하지 않습니다.</li>
+  </ul>
+  <h2>링크</h2>
+  
+  <p>공개된 Repository나 제품 링크는 없습니다.</p>
+  
+</section>
+  </main>
+  <footer class="site-footer">
+    <p><a href="mailto:jhson0507@gmail.com">jhson0507@gmail.com</a> · <a href="https://github.com/SonJi0507" rel="me noopener noreferrer">GitHub</a> · <a href="/assets/portfolio.pdf">PDF 다운로드</a></p>
+  </footer>
+  <script src="/js/site.js" defer></script>
+</body>
+</html>

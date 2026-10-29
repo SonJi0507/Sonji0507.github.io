@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ site.name }} · {{ site.role }}</title>
+  <meta name="description" content="{{ site.summary }}">
+  <meta name="author" content="{{ site.name }}">
+  <link rel="canonical" href="{{ canonical }}">
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/portfolio.css">
+</head>
+<body>
+  <div class="screen-bar">
+    <a href="/">사이트로</a>
+    <a href="/assets/portfolio.pdf">PDF 다운로드</a>
+  </div>
+
+  <header class="cover">
+    <p class="kicker">Portfolio</p>
+    <h1>{{ site.name }}</h1>
+    <p class="role">{{ site.role }}</p>
+    <p class="summary">{{ site.summary }}</p>
+    <dl class="meta">
+      <div>
+        <dt>이메일</dt>
+        <dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd>
+      </div>
+      <div>
+        <dt>GitHub</dt>
+        <dd><a href="{{ site.github }}">{{ site.github }}</a></dd>
+      </div>
+      <div>
+        <dt>사이트</dt>
+        <dd><a href="{{ site.site }}">{{ site.site }}</a></dd>
+      </div>
+    </dl>
+  </header>
+
+  {% for project in projects %}
+  <article class="case" id="{{ project.slug }}">
+    <p class="kicker">{{ "%02d"|format(loop.index) }} · {{ project.kicker }}{% if project.when %} · {{ project.when }}{% endif %}</p>
+    <h1>{{ project.title }}</h1>
+    <p class="lede">{{ project.overview }}</p>
+
+    <h2>문제</h2>
+    <p>{{ project.problem }}</p>
+
+    <h2>역할</h2>
+    <p>{{ project.role }}</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      {% for item in project.stack %}<li>{{ item }}</li>{% endfor %}
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      {% for point in project.points %}<li>{{ point }}</li>{% endfor %}
+    </ul>
+
+    {% if project.diagram %}
+    <img src="/img/homelab.svg" alt="배포된 앱은 Cloudflare Tunnel과 Nginx Proxy Manager를 거쳐 Colima k3s로 간다. 데이터는 Host의 Container에 남고, Beszel과 Uptime Kuma로 상태를 본다.">
+    {% endif %}
+
+    <h2>결과</h2>
+    <ul>
+      {% for result in project.results %}<li>{{ result }}</li>{% endfor %}
+    </ul>
+
+    <h2>링크</h2>
+    {% if project.links %}
+    <ul>
+      {% for link in project.links %}
+      <li><a href="{{ abs_url(link.href) }}">{{ link.label }}</a></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>공개된 Repository나 제품 링크는 없습니다.</p>
+    {% endif %}
+  </article>
+  {% endfor %}
+</body>
+</html>

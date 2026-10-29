@@ -1,0 +1,45 @@
+<section class="page-hero">
+  <p class="back"><a href="/projects/">프로젝트</a></p>
+  <p class="kicker">{{ project.kicker }}{% if project.when %} · {{ project.when }}{% endif %}</p>
+  <h1>{{ project.title }}</h1>
+  <p class="lede">{{ project.overview }}</p>
+  {% if project.links %}
+  <p class="actions">
+    {% for link in project.links %}
+    <a href="{{ link.href }}" rel="noopener noreferrer">{{ link.label }}</a>
+    {% endfor %}
+  </p>
+  {% endif %}
+</section>
+
+<section class="prose">
+  <h2>문제</h2>
+  <p>{{ project.problem }}</p>
+  <h2>역할</h2>
+  <p>{{ project.role }}</p>
+  <h2>기술</h2>
+  <ul class="chips">
+    {% for item in project.stack %}<li>{{ item }}</li>{% endfor %}
+  </ul>
+  <h2>기술적으로 손댄 부분</h2>
+  <ul>
+    {% for point in project.points %}<li>{{ point }}</li>{% endfor %}
+  </ul>
+  {% if project.diagram %}
+  <img src="/img/homelab.svg" alt="배포된 앱은 Cloudflare Tunnel과 Nginx Proxy Manager를 거쳐 Colima k3s로 간다. 데이터는 Host의 Container에 남고, Beszel과 Uptime Kuma로 상태를 본다.">
+  {% endif %}
+  <h2>결과</h2>
+  <ul>
+    {% for result in project.results %}<li>{{ result }}</li>{% endfor %}
+  </ul>
+  <h2>링크</h2>
+  {% if project.links %}
+  <ul>
+    {% for link in project.links %}
+    <li><a href="{{ link.href }}" rel="noopener noreferrer">{{ link.label }}</a></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>공개된 Repository나 제품 링크는 없습니다.</p>
+  {% endif %}
+</section>

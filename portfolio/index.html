@@ -38,46 +38,8 @@
   </header>
 
   
-  <article class="case" id="our-bible-note">
-    <p class="kicker">01 · 사이드 프로젝트 · 운영 중</p>
-    <h1>OurBibleNote</h1>
-    <p class="lede">성경 구절이 서로를 가리키는 연결을 그래프로 보여 주는 웹 서비스입니다. 그 구절에 QT 노트를 붙이고, 연결된 다음 장으로 넘어갈 수 있습니다.</p>
-
-    <h2>문제</h2>
-    <p>구절 사이의 연결을 한 화면에서 보기 어려웠습니다. 역본을 바꿔도 같은 연결이 유지되어야 했고, 묵상 노트도 그 구절에 두고 싶었습니다.</p>
-
-    <h2>역할</h2>
-    <p>기획, 개발, 배포, 운영을 혼자 맡았습니다.</p>
-
-    <h2>기술</h2>
-    <ul class="chips">
-      <li>Django</li><li>DRF</li><li>Python</li><li>Next.js</li><li>React</li><li>TypeScript</li><li>PostgreSQL</li><li>Redis</li><li>Docker</li><li>GitHub Actions</li><li>Playwright</li>
-    </ul>
-
-    <h2>기술적으로 손댄 부분</h2>
-    <ul>
-      <li>백엔드는 Django 6와 Django REST Framework(Python 3.14)이고, 화면은 Next.js 15입니다. 둘을 한 Monorepo에 두었습니다.</li><li>개역개정, 개역한글, NIV, NLT의 각 장을 그래프 노드로 두었습니다. 장과 장을 잇는 엣지, 태그, 그룹을 만들고 공유하는 API를 설계했습니다.</li><li>Google, Kakao, Naver 로그인은 state 값으로 요청이 위조되지 않았는지 확인합니다. 로그인 상태는 Django 세션 쿠키로 유지합니다.</li><li>Excel의 성경 본문을 Bible 테이블에 넣고, 이어서 그래프 노드를 만듭니다. 이 명령은 여러 번 실행해도 결과가 같습니다.</li><li>GitHub Actions가 배포 전에 검사합니다. 백엔드는 ruff, ty, 마이그레이션 누락 검사, pytest이고, 화면은 lint, tsc, Vitest, Playwright E2E입니다. E2E는 허용되지 않은 스크립트(CSP 위반)가 0건인지 확인합니다.</li><li>홈서버의 Docker Compose로 운영합니다. PostgreSQL 18, Redis, Reverse Proxy를 쓰고, 페이지마다 다른 nonce로 CSP를 적용해 허용하지 않은 스크립트를 막습니다.</li><li>AI 코딩 도구가 따를 가이드를 두었습니다. 그 도구가 작성한 코드도 같은 CI 검사를 통과해야 합니다.</li>
-    </ul>
-
-    
-
-    <h2>결과</h2>
-    <ul>
-      <li>https://ourbiblenote.com 에서 운영 중입니다.</li><li>배포 전에 lint, 타입 검사, pytest, E2E가 통과해야 합니다.</li>
-    </ul>
-
-    <h2>링크</h2>
-    
-    <ul>
-      
-      <li><a href="https://ourbiblenote.com">ourbiblenote.com</a></li>
-      
-    </ul>
-    
-  </article>
-  
   <article class="case" id="homelab">
-    <p class="kicker">02 · 개인 인프라 · 진행 중</p>
+    <p class="kicker">01 · 개인 인프라 · 진행 중</p>
     <h1>홈서버</h1>
     <p class="lede">집 Mac Mini에서 개인 인프라와 배포 환경을 직접 구축하고 운영합니다. 외부에는 서비스에 필요한 부분만 엽니다.</p>
 
@@ -183,7 +145,7 @@
 
     <h2>결과</h2>
     <ul>
-      <li>OurBibleNote를 이 구성 위에서 운영합니다.</li><li>외부에 공개하는 서비스와 내부 관리 도구를 분리해, 대시보드와 관리 화면은 인터넷에 노출하지 않습니다.</li>
+      <li>개인 웹 서비스를 이 구성 위에서 운영합니다.</li><li>외부에 공개하는 서비스와 내부 관리 도구를 분리해, 대시보드와 관리 화면은 인터넷에 노출하지 않습니다.</li>
     </ul>
 
     <h2>링크</h2>

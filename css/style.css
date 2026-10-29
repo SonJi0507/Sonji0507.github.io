@@ -102,7 +102,7 @@ main,
 
 .wordmark {
   font-size: 1rem;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: -0.03em;
   color: var(--ink);
   text-decoration: none;
@@ -156,7 +156,7 @@ main {
   margin: 0 0 0.75rem;
   color: var(--accent);
   font-size: 0.72rem;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -164,7 +164,7 @@ main {
 h1,
 h2,
 h3 {
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1.25;
 }
@@ -237,7 +237,7 @@ h3 {
 .facts strong {
   display: block;
   font-size: 1.12rem;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: -0.03em;
   color: var(--ink);
 }

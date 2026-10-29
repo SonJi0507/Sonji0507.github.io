@@ -13,11 +13,16 @@ import markdown
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "src"))
+from catalog import PROJECTS, SITE  # noqa: E402
+
 PAGES = ROOT / "src" / "pages"
 TEMPLATES = ROOT / "src" / "templates"
 STATIC = ROOT / "src" / "static"
 DIST = ROOT / "dist"
+PDF_SRC = ROOT / "assets" / "portfolio.pdf"
 CANONICAL_ORIGIN = "https://sonji0507.github.io"
+FORBIDDEN = ("Python 백엔드", "python backend developer")
 
 IMG_RE = re.compile(r"!\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 IMG_TAG_RE = re.compile(
@@ -96,7 +101,7 @@ def render_pages(env: Environment) -> list[str]:
     built: list[str] = []
 
     if not PAGES.is_dir():
-        fail(f"missing pages dir: {PAGES}")
+        return built
 
     for md_path in sorted(PAGES.rglob("*.md")):
         post = frontmatter.loads(md_path.read_text(encoding="utf-8"))
@@ -120,13 +125,80 @@ def render_pages(env: Environment) -> list[str]:
         out_path.write_text(html, encoding="utf-8")
         built.append(url_path)
 
-    if not built:
-        fail("no pages built (all missing or draft)")
+    return built
+
+
+def write_html(path: Path, html: str) -> None:
+    lowered = html.lower()
+    for phrase in FORBIDDEN:
+        if phrase.lower() in lowered:
+            fail(f"{path}: forbidden phrasing {phrase!r}")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(html, encoding="utf-8")
+
+
+def render_catalog(env: Environment) -> list[str]:
+    base = env.get_template("base.html")
+    home_body = env.get_template("home.html").render(site=SITE, projects=PROJECTS)
+    index_body = env.get_template("projects_index.html").render(site=SITE, projects=PROJECTS)
+    project_template = env.get_template("project.html")
+    portfolio = env.get_template("portfolio.html")
+    built: list[str] = []
+
+    pages = [
+        (
+            DIST / "index.html",
+            "/",
+            f"{SITE['name']} · {SITE['role']}",
+            f"{SITE['role']} {SITE['name']}의 프로젝트 포트폴리오. {SITE['summary']}",
+            home_body,
+        ),
+        (
+            DIST / "projects" / "index.html",
+            "/projects/",
+            f"프로젝트 · {SITE['name']}",
+            "사이드 프로젝트와 미피아에서 맡은 일.",
+            index_body,
+        ),
+    ]
+    for project in PROJECTS:
+        body = inline_local_svgs(project_template.render(project=project))
+        pages.append(
+            (
+                DIST / "projects" / project["slug"] / "index.html",
+                f"/projects/{project['slug']}/",
+                f"{project['title']} · {SITE['name']}",
+                project["description"],
+                body,
+            )
+        )
+
+    for out_path, url_path, title, description, body in pages:
+        html = base.render(
+            title=title,
+            description=description,
+            canonical=canonical_href(url_path),
+            path=url_path,
+            body=body,
+        )
+        write_html(out_path, html)
+        built.append(url_path)
+
+    portfolio_html = inline_local_svgs(
+        portfolio.render(
+            site=SITE,
+            projects=PROJECTS,
+            canonical=canonical_href("/portfolio/"),
+            abs_url=lambda href: href if href.startswith("http") or href.startswith("mailto:") else f"{CANONICAL_ORIGIN}{href}",
+        )
+    )
+    write_html(DIST / "portfolio" / "index.html", portfolio_html)
+    built.append("/portfolio/")
     return built
 
 
 def copy_static() -> None:
-    for name in ("css", "img", "js"):
+    for name in ("css", "img", "js", "fonts"):
         src = STATIC / name
         dest = DIST / name
         if not src.is_dir():
@@ -140,6 +212,15 @@ def copy_static() -> None:
                 shutil.copy2(item, target)
 
 
+def copy_pdf() -> None:
+    if not PDF_SRC.is_file():
+        print("warning: assets/portfolio.pdf missing (run make pdf)")
+        return
+    dest = DIST / "assets"
+    dest.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(PDF_SRC, dest / "portfolio.pdf")
+
+
 def main() -> None:
     if DIST.exists():
         shutil.rmtree(DIST)
@@ -150,11 +231,15 @@ def main() -> None:
         autoescape=select_autoescape(["html", "xml"]),
     )
     paths = render_pages(env)
+    paths.extend(render_catalog(env))
     copy_static()
+    copy_pdf()
 
     (DIST / ".nojekyll").write_text("", encoding="utf-8")
     if (DIST / "CNAME").exists():
         fail("dist/CNAME must not exist")
+    if not paths:
+        fail("no pages built")
 
     print("built:")
     for path in paths:

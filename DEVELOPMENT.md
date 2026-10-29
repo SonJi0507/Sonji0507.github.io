@@ -1,14 +1,15 @@
 # 개발
 
-소스는 `src/`입니다. `make build`가 `dist/`를 만들고, 같은 파일을 레포 루트에도 복사합니다.
+소스는 `src/`입니다. 프로젝트 본문은 `src/catalog.py`이고, `make build`가 `dist/`를 만든 뒤 같은 파일을 레포 루트에도 복사합니다.
 
 ```bash
 uv sync
 make build
 make serve   # http://127.0.0.1:8000
+make pdf     # assets/portfolio.pdf  (Chrome 또는 Chromium 필요)
 ```
 
-`dist/`는 gitignore입니다. 페이지는 `src/pages/`의 Markdown입니다. `index.md`는 그 폴더의 주소가 되고, 나머지 파일은 `/경로/`로 나갑니다.
+`dist/`는 gitignore입니다. `make pdf`가 만든 `assets/portfolio.pdf`는 커밋합니다. 사이트 빌드는 그 파일을 `dist/assets/portfolio.pdf`로 복사해 `/assets/portfolio.pdf`에서 받게 합니다.
 
 `main` 푸시가 `.github/workflows/pages.yml`을 돌립니다. 배포 산출물은 `dist/`입니다.
 

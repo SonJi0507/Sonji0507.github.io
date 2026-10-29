@@ -13,8 +13,7 @@
   <meta property="og:url" content="{{ canonical }}">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="/css/fonts.css">
   <link rel="stylesheet" href="/css/style.css">
   <script>document.documentElement.classList.add("js")</script>
 </head>
@@ -29,10 +28,9 @@
       </div>
       <nav class="site-nav" aria-label="주요">
         <a href="/#about"{% if path == "/" %} aria-current="page"{% endif %}>소개</a>
-        <a href="/#skills">기술</a>
-        <a href="/experience/"{% if path == "/experience/" %} aria-current="page"{% endif %}>경력</a>
         <a href="/projects/"{% if path.startswith("/projects/") %} aria-current="page"{% endif %}>프로젝트</a>
         <a href="/#contact">연락</a>
+        <a href="/assets/portfolio.pdf">PDF</a>
       </nav>
     </div>
   </header>
@@ -40,7 +38,7 @@
     {{ body | safe }}
   </main>
   <footer class="site-footer">
-    <p><a href="mailto:jhson0507@gmail.com">jhson0507@gmail.com</a> · <a href="https://github.com/SonJi0507" rel="me noopener noreferrer">GitHub</a></p>
+    <p><a href="mailto:jhson0507@gmail.com">jhson0507@gmail.com</a> · <a href="https://github.com/SonJi0507" rel="me noopener noreferrer">GitHub</a> · <a href="/assets/portfolio.pdf">PDF 다운로드</a></p>
   </footer>
   <script src="/js/site.js" defer></script>
 </body>

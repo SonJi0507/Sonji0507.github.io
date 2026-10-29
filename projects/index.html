@@ -4,17 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>프로젝트 · 손지혁</title>
-  <meta name="description" content="손지혁이 운영하는 서비스와 개인 인프라.">
+  <meta name="description" content="사이드 프로젝트와 미피아에서 맡은 일.">
   <meta name="author" content="손지혁">
   <meta name="theme-color" content="#0b0c0e">
   <link rel="canonical" href="https://sonji0507.github.io/projects/">
   <meta property="og:title" content="프로젝트 · 손지혁">
-  <meta property="og:description" content="손지혁이 운영하는 서비스와 개인 인프라.">
+  <meta property="og:description" content="사이드 프로젝트와 미피아에서 맡은 일.">
   <meta property="og:url" content="https://sonji0507.github.io/projects/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="/css/fonts.css">
   <link rel="stylesheet" href="/css/style.css">
   <script>document.documentElement.classList.add("js")</script>
 </head>
@@ -29,37 +28,124 @@
       </div>
       <nav class="site-nav" aria-label="주요">
         <a href="/#about">소개</a>
-        <a href="/#skills">기술</a>
-        <a href="/experience/">경력</a>
         <a href="/projects/" aria-current="page">프로젝트</a>
         <a href="/#contact">연락</a>
+        <a href="/assets/portfolio.pdf">PDF</a>
       </nav>
     </div>
   </header>
   <main id="content">
     <section class="page-hero">
-<p class="kicker">Projects</p>
-<h1>프로젝트</h1>
-<p class="lede">직접 만들어 운영하는 서비스와 개인 인프라입니다.</p>
+  <p class="kicker">Projects</p>
+  <h1>프로젝트</h1>
+  <p class="lede">사이드 프로젝트와 미피아에서 맡은 일입니다.</p>
+  <p class="actions"><a href="/assets/portfolio.pdf">PDF 다운로드</a></p>
 </section>
 
 <div class="cards">
-<a class="card" href="/projects/our-bible-note/">
-<p class="kicker">01 · 사이드 프로젝트</p>
-<h3>OurBibleNote</h3>
-<p>성경 구절의 관계를 그래프로 보고 QT 노트를 잇는 웹 서비스. 기획부터 운영까지 혼자 맡았습니다.</p>
-<p class="card-meta">Django · Next.js · PostgreSQL<span class="card-go">자세히</span></p>
-</a>
-<a class="card" href="/projects/homelab/">
-<p class="kicker">02 · 개인 인프라</p>
-<h3>홈서버</h3>
-<p>집 Mac Mini에서 데이터와 앱의 수명을 나누고, 공개할 면만 밖으로 열어 서비스를 올립니다.</p>
-<p class="card-meta">Docker · k3s · Cloudflare<span class="card-go">자세히</span></p>
-</a>
+  
+  <a class="card" href="/projects/our-bible-note/">
+    <p class="kicker">01 · 사이드 프로젝트</p>
+    <h3>OurBibleNote</h3>
+    <p>성경 구절의 관계를 그래프로 보고 QT 노트를 잇는 웹 서비스. 기획부터 운영까지 혼자 맡았습니다.</p>
+    <p class="card-meta">Django · DRF · Python · 운영 중<span class="card-go">자세히</span></p>
+  </a>
+  
+  <a class="card" href="/projects/homelab/">
+    <p class="kicker">02 · 개인 인프라</p>
+    <h3>홈서버</h3>
+    <p>집 Mac Mini에서 데이터와 앱의 수명을 나누고, 공개할 면만 밖으로 열어 서비스를 올립니다.</p>
+    <p class="card-meta">PostgreSQL · Redis · Docker · 진행 중<span class="card-go">자세히</span></p>
+  </a>
+  
+  <a class="card" href="/projects/api-platform/">
+    <p class="kicker">03 · 미피아</p>
+    <h3>음원 분석 API 플랫폼</h3>
+    <p>외부 개발자용 음원 분석 API를 프로토타입에서 프로덕션으로 다시 설계하고 운영합니다.</p>
+    <p class="card-meta">Python · SQL · 2025.10 – 2026.02, 이후 운영<span class="card-go">자세히</span></p>
+  </a>
+  
+  <a class="card" href="/projects/credit-wallet/">
+    <p class="kicker">04 · 미피아</p>
+    <h3>B2B Credit Wallet</h3>
+    <p>선불·후불·단건·정기·자동 충전을 하나의 과금 파이프라인으로 모았습니다.</p>
+    <p class="card-meta">Python · 2026.08 – 2026.09<span class="card-go">자세히</span></p>
+  </a>
+  
+  <a class="card" href="/projects/observability/">
+    <p class="kicker">05 · 미피아</p>
+    <h3>Observability</h3>
+    <p>메트릭·로그·트레이스가 없던 서비스에 관측을 붙이고, 장애 알림을 자동화했습니다.</p>
+    <p class="card-meta">OpenTelemetry · Prometheus · Grafana · 2025.08 – 진행중<span class="card-go">자세히</span></p>
+  </a>
+  
+  <a class="card" href="/projects/performance/">
+    <p class="kicker">06 · 미피아</p>
+    <h3>조회·응답 성능</h3>
+    <p>인덱스와 응답 경로를 고쳐 주요 조회와 API 지연을 낮췄습니다.</p>
+    <p class="card-meta">SQL · Python · GitHub Actions · 2025.05 – 2026.10<span class="card-go">자세히</span></p>
+  </a>
+  
+  <a class="card" href="/projects/inspection-schema/">
+    <p class="kicker">07 · 미피아</p>
+    <h3>검사 시스템 재설계</h3>
+    <p>검사 아키텍처와 DB 스키마를 음원 중심으로 다시 잡았습니다.</p>
+    <p class="card-meta">SQL · Python · 2026.02 – 2026.04<span class="card-go">자세히</span></p>
+  </a>
+  
+  <a class="card" href="/projects/auth/">
+    <p class="kicker">08 · 미피아</p>
+    <h3>로그인·토큰</h3>
+    <p>토큰 재발급 오류를 없애고 인증 방식을 늘렸습니다.</p>
+    <p class="card-meta">JWT · OAuth · Python · 2026.01 – 2026.02<span class="card-go">자세히</span></p>
+  </a>
+  
+  <a class="card" href="/projects/storage-utils/">
+    <p class="kicker">09 · 미피아</p>
+    <h3>공통 스토리지 유틸리티</h3>
+    <p>클라우드별 스토리지 설정과 중복 업로드를 공통 라이브러리로 없앴습니다.</p>
+    <p class="card-meta">Python · GCP · NCP · 2026.07<span class="card-go">자세히</span></p>
+  </a>
+  
+  <a class="card" href="/projects/disposable-email/">
+    <p class="kicker">10 · 미피아</p>
+    <h3>1회용 이메일 도메인 수집</h3>
+    <p>가입 어뷰징에 쓰는 1회용 이메일 도메인 목록을 자동으로 최신화합니다.</p>
+    <p class="card-meta">Python · 2026.07<span class="card-go">자세히</span></p>
+  </a>
+  
+  <a class="card" href="/projects/email-tracking/">
+    <p class="kicker">11 · 미피아</p>
+    <h3>이메일 발송·트래킹</h3>
+    <p>발송 이후의 반응 추적과 타겟팅까지 이어지는 이메일 자동화를 만들었습니다.</p>
+    <p class="card-meta">Python · Mailjet · 2026.04<span class="card-go">자세히</span></p>
+  </a>
+  
+  <a class="card" href="/projects/mucheck-demo/">
+    <p class="kicker">12 · 미피아</p>
+    <h3>Mucheck Demo</h3>
+    <p>AI 판별 데모의 대용량 업로드를 빠르게 하고 서버 부하를 낮췄습니다.</p>
+    <p class="card-meta">Python · 2026.05<span class="card-go">자세히</span></p>
+  </a>
+  
+  <a class="card" href="/projects/async-batch/">
+    <p class="kicker">13 · 미피아</p>
+    <h3>비동기·배치</h3>
+    <p>수동으로 돌리던 운영 작업을 배치와 스케줄러로 옮겼습니다.</p>
+    <p class="card-meta">Python · Celery · 2025.05 – 2025.09<span class="card-go">자세히</span></p>
+  </a>
+  
+  <a class="card" href="/projects/pricing/">
+    <p class="kicker">14 · 미피아</p>
+    <h3>요금제 개편</h3>
+    <p>마케팅 정책이 요금 코드에 반영되는 속도와 배포 신뢰도를 높였습니다.</p>
+    <p class="card-meta">Python · 2025.06 – 2025.07<span class="card-go">자세히</span></p>
+  </a>
+  
 </div>
   </main>
   <footer class="site-footer">
-    <p><a href="mailto:jhson0507@gmail.com">jhson0507@gmail.com</a> · <a href="https://github.com/SonJi0507" rel="me noopener noreferrer">GitHub</a></p>
+    <p><a href="mailto:jhson0507@gmail.com">jhson0507@gmail.com</a> · <a href="https://github.com/SonJi0507" rel="me noopener noreferrer">GitHub</a> · <a href="/assets/portfolio.pdf">PDF 다운로드</a></p>
   </footer>
   <script src="/js/site.js" defer></script>
 </body>

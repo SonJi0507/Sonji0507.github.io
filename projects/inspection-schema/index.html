@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>검사 시스템 재설계 · 손지혁</title>
+  <meta name="description" content="검사 시스템 아키텍처와 DB 스키마 재설계. DB 호출 30% 감소.">
+  <meta name="author" content="손지혁">
+  <meta name="theme-color" content="#0b0c0e">
+  <link rel="canonical" href="https://sonji0507.github.io/projects/inspection-schema/">
+  <meta property="og:title" content="검사 시스템 재설계 · 손지혁">
+  <meta property="og:description" content="검사 시스템 아키텍처와 DB 스키마 재설계. DB 호출 30% 감소.">
+  <meta property="og:url" content="https://sonji0507.github.io/projects/inspection-schema/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <a class="skip" href="#content">본문으로 건너뛰기</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-bar">
+        <a class="wordmark" href="/">손지혁</a>
+        <a class="header-link" href="https://github.com/SonJi0507" rel="me noopener noreferrer">GitHub</a>
+      </div>
+      <nav class="site-nav" aria-label="주요">
+        <a href="/#about">소개</a>
+        <a href="/projects/" aria-current="page">프로젝트</a>
+        <a href="/#contact">연락</a>
+        <a href="/assets/portfolio.pdf">PDF</a>
+      </nav>
+    </div>
+  </header>
+  <main id="content">
+    <section class="page-hero">
+  <p class="back"><a href="/projects/">프로젝트</a></p>
+  <p class="kicker">미피아 · 2026.02 – 2026.04</p>
+  <h1>검사 시스템 재설계</h1>
+  <p class="lede">검사 시스템의 아키텍처와 DB 스키마를 다시 설계한 일입니다. 데이터를 음원 중심으로 다루도록 맞춰 다음 서비스가 갈라질 자리를 만들었습니다.</p>
+  
+</section>
+
+<section class="prose">
+  <h2>문제</h2>
+  <p>검사 데이터가 음원 중심의 다음 기능과 맞지 않았고, DB 호출이 많았습니다.</p>
+  <h2>역할</h2>
+  <p>백엔드 개발자로 아키텍처와 스키마 재설계를 맡았습니다.</p>
+  <h2>기술</h2>
+  <ul class="chips">
+    <li>SQL</li><li>Python</li>
+  </ul>
+  <h2>기술적으로 손댄 부분</h2>
+  <ul>
+    <li>검사 스키마를 음원 중심으로 재구성했습니다.</li><li>쿼리 가독성과 유지보수성이 떨어지던 호출 구조를 정리했습니다.</li>
+  </ul>
+  
+  <h2>결과</h2>
+  <ul>
+    <li>DB 호출 횟수 30% 감소.</li><li>음원 중심 관리로 서비스 다각화 기반을 마련했습니다.</li>
+  </ul>
+  <h2>링크</h2>
+  
+  <p>공개된 저장소나 제품 링크는 없습니다.</p>
+  
+</section>
+  </main>
+  <footer class="site-footer">
+    <p><a href="mailto:jhson0507@gmail.com">jhson0507@gmail.com</a> · <a href="https://github.com/SonJi0507" rel="me noopener noreferrer">GitHub</a> · <a href="/assets/portfolio.pdf">PDF 다운로드</a></p>
+  </footer>
+  <script src="/js/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<section class="hero" id="about">
+  <p class="kicker">{{ site.role_en }}</p>
+  <h1>{{ site.name }}</h1>
+  <p class="lede">{{ site.summary }}</p>
+  <p class="actions">
+    <a href="#projects">프로젝트 보기</a>
+    <a href="/assets/portfolio.pdf">PDF 다운로드</a>
+  </p>
+</section>
+
+<section class="block" id="projects">
+  <p class="kicker">Projects</p>
+  <h2>프로젝트</h2>
+  <p>사이드 프로젝트와 미피아에서 맡은 일입니다. 제출용 PDF는 같은 내용을 인쇄 형태로 모은 것입니다.</p>
+  <div class="cards">
+    {% for project in projects %}
+    <a class="card" href="/projects/{{ project.slug }}/">
+      <p class="kicker">{{ "%02d"|format(loop.index) }} · {{ project.kicker }}</p>
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.summary }}</p>
+      <p class="card-meta">{{ project.stack[:3]|join(" · ") }}{% if project.when %} · {{ project.when }}{% endif %}<span class="card-go">자세히</span></p>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="block" id="contact">
+  <p class="kicker">Contact</p>
+  <h2>연락</h2>
+  <p>메일과 GitHub으로 연락주시면 됩니다.</p>
+  <dl class="contact-list">
+    <div>
+      <dt>이메일</dt>
+      <dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd>
+    </div>
+    <div>
+      <dt>GitHub</dt>
+      <dd><a href="{{ site.github }}" rel="me noopener noreferrer">{{ site.github_label }}</a></dd>
+    </div>
+    <div>
+      <dt>PDF</dt>
+      <dd><a href="/assets/portfolio.pdf">포트폴리오 PDF</a></dd>
+    </div>
+  </dl>
+</section>

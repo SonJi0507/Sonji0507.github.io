@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>손지혁 · 백엔드 개발자</title>
+  <meta name="description" content="빠르게 배우고 바로 적용하는 백엔드 개발자입니다.">
+  <meta name="author" content="손지혁">
+  <link rel="canonical" href="https://sonji0507.github.io/portfolio/">
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/portfolio.css">
+</head>
+<body>
+  <div class="screen-bar">
+    <a href="/">사이트로</a>
+    <a href="/assets/portfolio.pdf">PDF 다운로드</a>
+  </div>
+
+  <header class="cover">
+    <p class="kicker">Portfolio</p>
+    <h1>손지혁</h1>
+    <p class="role">백엔드 개발자</p>
+    <p class="summary">빠르게 배우고 바로 적용하는 백엔드 개발자입니다.</p>
+    <dl class="meta">
+      <div>
+        <dt>이메일</dt>
+        <dd><a href="mailto:jhson0507@gmail.com">jhson0507@gmail.com</a></dd>
+      </div>
+      <div>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/SonJi0507">https://github.com/SonJi0507</a></dd>
+      </div>
+      <div>
+        <dt>사이트</dt>
+        <dd><a href="https://sonji0507.github.io">https://sonji0507.github.io</a></dd>
+      </div>
+    </dl>
+  </header>
+
+  
+  <article class="case" id="our-bible-note">
+    <p class="kicker">01 · 사이드 프로젝트 · 운영 중</p>
+    <h1>OurBibleNote</h1>
+    <p class="lede">성경 구절 간의 관계를 그래프로 시각화하고 QT 노트를 연결하는 웹 서비스입니다. 구약과 신약을 한 장의 지도로 보고, 연결된 장을 따라 읽으며 그룹과 묵상 노트를 남깁니다.</p>
+
+    <h2>문제</h2>
+    <p>성경은 구절이 서로를 가리키는데, 그 관계를 한 장의 지도로 보면서 묵상 노트까지 같은 자리에 두기가 어려웠습니다. 역본을 바꿔도 같은 자리가 이어져야 했습니다.</p>
+
+    <h2>역할</h2>
+    <p>혼자 기획부터 개발, 배포, 운영까지 맡았습니다.</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      <li>Django</li><li>DRF</li><li>Python</li><li>Next.js</li><li>React</li><li>TypeScript</li><li>PostgreSQL</li><li>Redis</li><li>Docker</li><li>GitHub Actions</li><li>Playwright</li>
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      <li>Django 6 + DRF 백엔드(Python 3.14, uv)와 Next.js 15(App Router, React 19, TypeScript) 프론트엔드를 한 모노레포로 구성했습니다.</li><li>성경 4개 역본(개역개정·개역한글·NIV·NLT)을 장 단위 그래프 노드로 구성하고, 노드·엣지·태그·그룹 공유 API를 설계했습니다.</li><li>Google·Kakao·Naver 소셜 로그인은 state 검증과 Django 세션 쿠키로 인증합니다.</li><li>데이터 시딩은 멱등합니다. Excel에서 Bible 테이블을 거쳐 그래프 노드까지 이어집니다.</li><li>GitHub Actions에서 ruff·ty·마이그레이션 누락 검사·pytest(PostgreSQL)와 프론트 lint·tsc·Vitest·Playwright E2E를 돌립니다. E2E는 CSP 위반 0건을 확인합니다.</li><li>홈서버에 Docker Compose로 운영합니다. PostgreSQL 18, Redis, 리버스 프록시, nonce 기반 CSP를 씁니다.</li><li>에이전트용 가이드를 두고, lint·타입 검사·테스트·E2E를 CI로 강제해 도구가 작성한 코드도 같은 기준으로 검증합니다.</li>
+    </ul>
+
+    
+
+    <h2>결과</h2>
+    <ul>
+      <li>https://ourbiblenote.com 에서 운영 중입니다.</li><li>배포 전에 lint, 타입 검사, pytest, E2E가 통과해야 합니다.</li>
+    </ul>
+
+    <h2>링크</h2>
+    
+    <ul>
+      
+      <li><a href="https://ourbiblenote.com">ourbiblenote.com</a></li>
+      
+    </ul>
+    
+  </article>
+  
+  <article class="case" id="homelab">
+    <p class="kicker">02 · 개인 인프라 · 진행 중</p>
+    <h1>홈서버</h1>
+    <p class="lede">집 Mac Mini로 개인 인프라와 배포를 직접 돌리는 작업입니다. 클라우드 콘솔을 흉내 내는 대신, 앱을 올렸다 내리고 저장소를 나누고 공개 면만 밖으로 냅니다.</p>
+
+    <h2>문제</h2>
+    <p>데이터베이스, 캐시, 파일 저장소, 프록시처럼 오래 남는 것과 자주 갈아끼우는 웹앱의 수명이 다릅니다. 데이터는 잘 안 건드리고 앱만 자주 바꾸고 싶었습니다.</p>
+
+    <h2>역할</h2>
+    <p>개인 인프라를 직접 구성하고 운영합니다. 인프라 저장소는 공개하지 않습니다.</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      <li>PostgreSQL</li><li>Redis</li><li>Docker</li><li>Colima</li><li>k3s</li><li>Cloudflare</li><li>Nginx Proxy Manager</li><li>Beszel</li><li>Uptime Kuma</li>
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      <li>오래 남는 것은 호스트 위 컨테이너로 두고, 웹앱은 Colima로 띄운 k3s에 올립니다.</li><li>앱 저장소는 컨테이너 이미지만 만들고, 인프라 저장소가 그 이미지를 받아 올립니다.</li><li>파일 저장소는 앱마다 접근 권한을 나눕니다. 관리자 계정은 앱에 넣지 않고, 관리 화면은 인터넷에 열지 않습니다.</li><li>밖에 내보내는 앱은 공유기 포트를 열지 않고 Cloudflare Tunnel로 나갑니다. 인증서는 Nginx Proxy Manager에서 끊습니다.</li><li>머신과 컨테이너 상태는 Beszel로, 서비스가 살아 있는지는 Uptime Kuma로 봅니다. 대시보드는 밖에 열지 않습니다.</li>
+    </ul>
+
+    
+    <figure class="diagram reveal"><svg class="diagram-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 760" role="img" aria-labelledby="title desc">
+  <title id="title">홈서버 구성</title>
+  <desc id="desc">배포된 앱은 Cloudflare Tunnel과 Nginx Proxy Manager를 거쳐 Colima k3s로 간다. 데이터는 호스트 컨테이너에 남고, Beszel과 Uptime Kuma로 상태를 본다. 알람은 Slack으로 받는다.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 z" fill="#d4a574"/>
+    </marker>
+  </defs>
+  <style>
+    .panel { fill: #14161c; }
+    .box { fill: #1b1e26; stroke: rgba(242,238,230,0.14); stroke-width: 1.2; }
+    .label { font: 600 14px system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; fill: #f2eee6; }
+    .sub { font: 12px system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; fill: #9c968b; }
+    .kicker { font: 650 11px system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; fill: #d4a574; letter-spacing: 0.14em; }
+    .line { stroke: #d4a574; stroke-width: 1.35; fill: none; marker-end: url(#arrow); }
+    .line-soft { stroke: #9c968b; stroke-width: 1.15; fill: none; stroke-dasharray: 5 4; marker-end: url(#arrow); }
+  </style>
+  <rect class="panel" x="0" y="0" width="720" height="760" rx="16"/>
+
+  <text class="kicker" x="36" y="36">PUBLIC</text>
+  <rect class="box" x="210" y="50" width="300" height="52" rx="10"/>
+  <text class="label" x="360" y="72" text-anchor="middle">방문자</text>
+  <text class="sub" x="360" y="88" text-anchor="middle">브라우저</text>
+
+  <path class="line" d="M 360 102 L 360 132"/>
+
+  <rect class="box" x="210" y="136" width="300" height="52" rx="10"/>
+  <text class="label" x="360" y="158" text-anchor="middle">Cloudflare Tunnel</text>
+  <text class="sub" x="360" y="174" text-anchor="middle">공유기 포트 없이 공개</text>
+
+  <path class="line" d="M 360 188 L 360 218"/>
+
+  <rect class="box" x="210" y="222" width="300" height="52" rx="10"/>
+  <text class="label" x="360" y="244" text-anchor="middle">Nginx Proxy Manager</text>
+  <text class="sub" x="360" y="260" text-anchor="middle">인증서는 여기서 종료</text>
+
+  <path class="line" d="M 360 274 L 360 304"/>
+
+  <rect class="box" x="210" y="308" width="300" height="52" rx="10"/>
+  <text class="label" x="360" y="330" text-anchor="middle">Colima · k3s</text>
+  <text class="sub" x="360" y="346" text-anchor="middle">웹앱만 올림</text>
+
+  <path class="line" d="M 360 360 L 360 390"/>
+
+  <rect class="box" x="210" y="394" width="300" height="52" rx="10"/>
+  <text class="label" x="360" y="416" text-anchor="middle">배포된 앱</text>
+  <text class="sub" x="360" y="432" text-anchor="middle">클러스터 위 워크로드</text>
+
+  <text class="kicker" x="36" y="478">HOST</text>
+  <rect class="box" x="40" y="492" width="200" height="52" rx="10"/>
+  <text class="label" x="140" y="514" text-anchor="middle">Postgres</text>
+  <text class="sub" x="140" y="530" text-anchor="middle">데이터</text>
+
+  <rect class="box" x="260" y="492" width="200" height="52" rx="10"/>
+  <text class="label" x="360" y="514" text-anchor="middle">Redis</text>
+  <text class="sub" x="360" y="530" text-anchor="middle">캐시</text>
+
+  <rect class="box" x="480" y="492" width="200" height="52" rx="10"/>
+  <text class="label" x="580" y="514" text-anchor="middle">파일 저장소</text>
+  <text class="sub" x="580" y="530" text-anchor="middle">앱별로만 접근</text>
+
+  <path class="line-soft" d="M 280 446 L 140 488"/>
+  <path class="line-soft" d="M 360 446 L 360 488"/>
+  <path class="line-soft" d="M 440 446 L 580 488"/>
+
+  <text class="kicker" x="36" y="574">WATCH</text>
+  <rect class="box" x="40" y="588" width="310" height="52" rx="10"/>
+  <text class="label" x="195" y="610" text-anchor="middle">Beszel</text>
+  <text class="sub" x="195" y="626" text-anchor="middle">머신 · 컨테이너</text>
+
+  <rect class="box" x="370" y="588" width="310" height="52" rx="10"/>
+  <text class="label" x="525" y="610" text-anchor="middle">Uptime Kuma</text>
+  <text class="sub" x="525" y="626" text-anchor="middle">서비스가 살아 있는지</text>
+
+  <path class="line-soft" d="M 195 640 L 360 668"/>
+  <path class="line-soft" d="M 525 640 L 360 668"/>
+
+  <rect class="box" x="210" y="672" width="300" height="52" rx="10"/>
+  <text class="label" x="360" y="694" text-anchor="middle">Slack</text>
+  <text class="sub" x="360" y="710" text-anchor="middle">알람</text>
+</svg></figure>
+    
+
+    <h2>결과</h2>
+    <ul>
+      <li>OurBibleNote를 이 구성 위에서 운영합니다.</li><li>공개 면과 관리 면을 나눠, 대시보드와 관리 화면은 인터넷에 열지 않습니다.</li>
+    </ul>
+
+    <h2>링크</h2>
+    
+    <p>공개된 저장소나 제품 링크는 없습니다.</p>
+    
+  </article>
+  
+  <article class="case" id="api-platform">
+    <p class="kicker">03 · 미피아 · 2025.10 – 2026.02, 이후 운영</p>
+    <h1>음원 분석 API 플랫폼</h1>
+    <p class="lede">외부 개발자용 음원 분석 API 플랫폼을 프로토타입에서 프로덕션으로 다시 설계하고 구축한 일입니다. 2025년 12월 16일 API v1.0을 공개한 뒤 같은 구조 위에서 버전을 늘리며 운영합니다.</p>
+
+    <h2>문제</h2>
+    <p>밖으로 내놓은 음원 분석 API가 프로토타입에 머물러, 외부 개발자가 그대로 붙이기 어려웠습니다.</p>
+
+    <h2>역할</h2>
+    <p>백엔드 개발자로 아키텍처 설계와 구축을 맡았습니다. 사실상 단독으로 진행했습니다.</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      <li>Python</li><li>SQL</li>
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      <li>API v1.0은 AI 음악 판별(lite·standard·pro), 음악 표절 탐지, 가사 표절 분석, 데이터셋 관리, Webhook 연동을 제공합니다.</li><li>v1.1에서 가사 추출 API를 같은 구조 위에 올렸습니다 (2026.02).</li><li>v1.1.1은 음원을 먼저 올립니다. POST /api/v1/music 이후 musicId로 분석합니다.</li><li>음원 fingerprint를 서버에 구현해 기능을 확장했습니다.</li>
+    </ul>
+
+    
+
+    <h2>결과</h2>
+    <ul>
+      <li>2025.12.16 API v1.0을 공개했습니다.</li><li>이후 가사 추출, 선업로드, fingerprint까지 같은 플랫폼에서 운영합니다.</li><li>B2B 과금 체계(Credit Wallet) 전환도 이 플랫폼 위에서 이어집니다.</li>
+    </ul>
+
+    <h2>링크</h2>
+    
+    <ul>
+      
+      <li><a href="https://docs.mippia.com">docs.mippia.com</a></li>
+      
+    </ul>
+    
+  </article>
+  
+  <article class="case" id="credit-wallet">
+    <p class="kicker">04 · 미피아 · 2026.08 – 2026.09</p>
+    <h1>B2B Credit Wallet</h1>
+    <p class="lede">B2B 플랫폼의 결제·과금 체계를 Credit Wallet으로 전환한 일입니다. 계약 형태가 달라도 같은 파이프라인으로 처리합니다.</p>
+
+    <h2>문제</h2>
+    <p>선불, 후불, 단건, 정기, 자동 충전처럼 B2B 계약 형태가 나뉘어 있어 과금 경로가 갈라졌습니다.</p>
+
+    <h2>역할</h2>
+    <p>백엔드 개발자로 전환을 맡았습니다.</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      <li>Python</li>
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      <li>선불·후불·단건·정기·자동 충전을 하나의 과금 파이프라인으로 대응하도록 구성했습니다.</li>
+    </ul>
+
+    
+
+    <h2>결과</h2>
+    <ul>
+      <li>계약 형태가 달라도 하나의 파이프라인으로 대응할 수 있게 됐습니다.</li>
+    </ul>
+
+    <h2>링크</h2>
+    
+    <p>공개된 저장소나 제품 링크는 없습니다.</p>
+    
+  </article>
+  
+  <article class="case" id="observability">
+    <p class="kicker">05 · 미피아 · 2025.08 – 진행중</p>
+    <h1>Observability</h1>
+    <p class="lede">메트릭·로그·트레이스가 없던 환경에 관측 체계를 처음 구축한 일입니다. 사람이 찾던 장애를 서비스별 Slack 알림으로 바꿨습니다.</p>
+
+    <h2>문제</h2>
+    <p>장애를 사람이 직접 발견해야 했고, 원인을 따라갈 관측 자료가 없었습니다.</p>
+
+    <h2>역할</h2>
+    <p>백엔드 개발자로 관측 체계를 도입하고 운영합니다.</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      <li>OpenTelemetry</li><li>Prometheus</li><li>Grafana</li><li>Loki</li><li>Tempo</li><li>Slack</li>
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      <li>메트릭, 로그, 트레이스를 서비스에 붙여 장애 인지와 원인 추적이 가능하게 했습니다.</li><li>사람이 직접 발견하던 장애를 서비스별 Slack 알림으로 통지합니다.</li>
+    </ul>
+
+    
+
+    <h2>결과</h2>
+    <ul>
+      <li>관측이 없던 환경에서 장애를 알림으로 인지하고 원인을 추적할 수 있게 됐습니다.</li>
+    </ul>
+
+    <h2>링크</h2>
+    
+    <p>공개된 저장소나 제품 링크는 없습니다.</p>
+    
+  </article>
+  
+  <article class="case" id="performance">
+    <p class="kicker">06 · 미피아 · 2025.05 – 2026.10</p>
+    <h1>조회·응답 성능</h1>
+    <p class="lede">상시로 맡은 성능·운영 개선입니다. 자주 보는 조회와 API 응답의 꼬리를 줄이고, 배포는 CI/CD로 고정했습니다.</p>
+
+    <h2>문제</h2>
+    <p>주요 테이블 조회와 API 응답이 느렸고, 배포 안정성도 손봐야 했습니다.</p>
+
+    <h2>역할</h2>
+    <p>백엔드 개발자로 인덱스, 응답 경로, CI/CD를 맡았습니다.</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      <li>SQL</li><li>Python</li><li>GitHub Actions</li>
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      <li>주요 테이블에 인덱스를 추가해 조회 경로를 줄였습니다.</li><li>API 응답의 p95·p99를 같은 기간에 따라 낮췄습니다.</li><li>CI/CD로 배포 절차를 고정해 배포 안정성과 개발 생산성을 높였습니다.</li>
+    </ul>
+
+    
+
+    <h2>결과</h2>
+    <ul>
+      <li>주요 테이블 조회 p95 500ms → 약 5ms (100배).</li><li>API 응답 p95 2s → 0.24s (약 8배), p99 2.4s → 0.48s (5배).</li>
+    </ul>
+
+    <h2>링크</h2>
+    
+    <p>공개된 저장소나 제품 링크는 없습니다.</p>
+    
+  </article>
+  
+  <article class="case" id="inspection-schema">
+    <p class="kicker">07 · 미피아 · 2026.02 – 2026.04</p>
+    <h1>검사 시스템 재설계</h1>
+    <p class="lede">검사 시스템의 아키텍처와 DB 스키마를 다시 설계한 일입니다. 데이터를 음원 중심으로 다루도록 맞춰 다음 서비스가 갈라질 자리를 만들었습니다.</p>
+
+    <h2>문제</h2>
+    <p>검사 데이터가 음원 중심의 다음 기능과 맞지 않았고, DB 호출이 많았습니다.</p>
+
+    <h2>역할</h2>
+    <p>백엔드 개발자로 아키텍처와 스키마 재설계를 맡았습니다.</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      <li>SQL</li><li>Python</li>
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      <li>검사 스키마를 음원 중심으로 재구성했습니다.</li><li>쿼리 가독성과 유지보수성이 떨어지던 호출 구조를 정리했습니다.</li>
+    </ul>
+
+    
+
+    <h2>결과</h2>
+    <ul>
+      <li>DB 호출 횟수 30% 감소.</li><li>음원 중심 관리로 서비스 다각화 기반을 마련했습니다.</li>
+    </ul>
+
+    <h2>링크</h2>
+    
+    <p>공개된 저장소나 제품 링크는 없습니다.</p>
+    
+  </article>
+  
+  <article class="case" id="auth">
+    <p class="kicker">08 · 미피아 · 2026.01 – 2026.02</p>
+    <h1>로그인·토큰</h1>
+    <p class="lede">로그인과 토큰 구조를 전면 개편한 일입니다. 재발급이 깨지던 경로를 고치고, 인증 방식을 넓혔습니다.</p>
+
+    <h2>문제</h2>
+    <p>토큰 재발급에 오류가 있었고, 인증 방식이 한정돼 접근이 좁았습니다.</p>
+
+    <h2>역할</h2>
+    <p>백엔드 개발자로 인증 구조 개편을 맡았습니다.</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      <li>JWT</li><li>OAuth</li><li>Python</li>
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      <li>토큰 재발급 흐름을 다시 구성해 실패하던 갱신을 해소했습니다.</li><li>인증 방식을 확장해 들어올 수 있는 경로를 늘렸습니다.</li>
+    </ul>
+
+    
+
+    <h2>결과</h2>
+    <ul>
+      <li>토큰 재발급 오류를 해소했습니다.</li><li>인증 방식 확장으로 접근성을 개선했습니다.</li>
+    </ul>
+
+    <h2>링크</h2>
+    
+    <p>공개된 저장소나 제품 링크는 없습니다.</p>
+    
+  </article>
+  
+  <article class="case" id="storage-utils">
+    <p class="kicker">09 · 미피아 · 2026.07</p>
+    <h1>공통 스토리지 유틸리티</h1>
+    <p class="lede">사내 공통 백엔드 유틸리티로 스토리지와 보안 연동을 뺀 일입니다. 서비스마다 반복하던 클라우드 설정과 파일 재업로드를 라이브러리 뒤로 숨겼습니다.</p>
+
+    <h2>문제</h2>
+    <p>스토리지 연동에 클라우드별 설정이 반복됐고, 서비스 사이에 파일을 다시 올리는 공정이 남아 있었습니다.</p>
+
+    <h2>역할</h2>
+    <p>백엔드 개발자로 공통 라이브러리를 만들었습니다.</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      <li>Python</li><li>GCP</li><li>NCP</li><li>AWS</li>
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      <li>스토리지 연동에 필요하던 클라우드별 설정 작업을 공통 라이브러리로 모았습니다.</li><li>서비스 간 파편화 때문에 생기던 파일 재업로드 공정을 제거했습니다.</li>
+    </ul>
+
+    
+
+    <h2>결과</h2>
+    <ul>
+      <li>사내 개발자가 클라우드별 스토리지 설정을 반복하지 않게 됐습니다.</li><li>불필요한 파일 재업로드 공정을 없앴습니다.</li>
+    </ul>
+
+    <h2>링크</h2>
+    
+    <p>공개된 저장소나 제품 링크는 없습니다.</p>
+    
+  </article>
+  
+  <article class="case" id="disposable-email">
+    <p class="kicker">10 · 미피아 · 2026.07</p>
+    <h1>1회용 이메일 도메인 수집</h1>
+    <p class="lede">가입 어뷰징을 막기 위해 1회용 이메일 도메인 목록을 사람 없이 갱신하는 파이프라인입니다.</p>
+
+    <h2>문제</h2>
+    <p>1회용 이메일 도메인 목록을 사람이 갱신하면 데이터 관리 공수가 크고, 목록이 금방 낡습니다.</p>
+
+    <h2>역할</h2>
+    <p>백엔드 개발자로 수집 파이프라인을 만들었습니다.</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      <li>Python</li>
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      <li>1회용 이메일 도메인 목록을 스케줄에 따라 자동으로 최신화합니다.</li>
+    </ul>
+
+    
+
+    <h2>결과</h2>
+    <ul>
+      <li>사람 손 없이 목록을 갱신해 데이터 관리 공수를 줄였습니다.</li><li>2026.07–10 동안 15회 자동 실행됐습니다.</li>
+    </ul>
+
+    <h2>링크</h2>
+    
+    <p>공개된 저장소나 제품 링크는 없습니다.</p>
+    
+  </article>
+  
+  <article class="case" id="email-tracking">
+    <p class="kicker">11 · 미피아 · 2026.04</p>
+    <h1>이메일 발송·트래킹</h1>
+    <p class="lede">이메일을 보내고, 반응을 추적하고, 그 결과로 타겟팅하는 흐름을 한 체계로 만든 일입니다.</p>
+
+    <h2>문제</h2>
+    <p>발송 이후의 반응과 타겟팅이 이어지지 않아, 메일을 자동화할 기반이 없었습니다.</p>
+
+    <h2>역할</h2>
+    <p>백엔드 개발자로 발송·추적 체계를 구축했습니다.</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      <li>Python</li><li>Mailjet</li>
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      <li>발송, 반응 추적, 타겟팅이 한 흐름으로 이어지게 구성했습니다.</li>
+    </ul>
+
+    
+
+    <h2>결과</h2>
+    <ul>
+      <li>이메일 자동화를 이어 갈 기반을 마련했습니다.</li>
+    </ul>
+
+    <h2>링크</h2>
+    
+    <p>공개된 저장소나 제품 링크는 없습니다.</p>
+    
+  </article>
+  
+  <article class="case" id="mucheck-demo">
+    <p class="kicker">12 · 미피아 · 2026.05</p>
+    <h1>Mucheck Demo</h1>
+    <p class="lede">Mucheck AI 판별 솔루션의 데모 페이지를 만들고, 큰 파일 업로드가 서버를 누르지 않도록 경로를 고친 일입니다.</p>
+
+    <h2>문제</h2>
+    <p>대용량 파일 업로드가 느렸고 서버 부하가 컸습니다.</p>
+
+    <h2>역할</h2>
+    <p>백엔드 개발자로 데모 페이지와 업로드 경로를 맡았습니다.</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      <li>Python</li>
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      <li>판별 솔루션을 시험해 볼 데모 페이지를 구축했습니다.</li><li>데모의 대용량 파일 업로드 속도를 높이고 서버 부하를 낮췄습니다.</li>
+    </ul>
+
+    
+
+    <h2>결과</h2>
+    <ul>
+      <li>대용량 파일 업로드 속도를 개선하고 서버 부하를 줄였습니다.</li>
+    </ul>
+
+    <h2>링크</h2>
+    
+    <p>공개된 저장소나 제품 링크는 없습니다.</p>
+    
+  </article>
+  
+  <article class="case" id="async-batch">
+    <p class="kicker">13 · 미피아 · 2025.05 – 2025.09</p>
+    <h1>비동기·배치</h1>
+    <p class="lede">손으로 돌리던 운영 작업을 비동기 처리, 배치, 스케줄러로 옮긴 일입니다.</p>
+
+    <h2>문제</h2>
+    <p>반복 운영이 수동이었고, 배치가 돌았는지 보기 어려웠습니다.</p>
+
+    <h2>역할</h2>
+    <p>백엔드 개발자로 비동기 처리와 스케줄러를 도입했습니다.</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      <li>Python</li><li>Celery</li>
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      <li>반복 작업을 비동기·배치로 옮기고 스케줄러에 올렸습니다.</li><li>배치 작업의 안정성과 가시성을 운영에서 확인할 수 있게 했습니다.</li>
+    </ul>
+
+    
+
+    <h2>결과</h2>
+    <ul>
+      <li>수동 운영 부담을 줄였습니다.</li><li>배치 작업의 안정성과 가시성을 확보했습니다.</li>
+    </ul>
+
+    <h2>링크</h2>
+    
+    <p>공개된 저장소나 제품 링크는 없습니다.</p>
+    
+  </article>
+  
+  <article class="case" id="pricing">
+    <p class="kicker">14 · 미피아 · 2025.06 – 2025.07</p>
+    <h1>요금제 개편</h1>
+    <p class="lede">요금제를 개편하면서 마케팅 정책이 코드와 배포에 반영되는 속도를 맞춘 일입니다.</p>
+
+    <h2>문제</h2>
+    <p>마케팅 정책이 바뀌어도 요금 코드와 배포가 그만큼 빨리 따라가지 못했습니다.</p>
+
+    <h2>역할</h2>
+    <p>백엔드 개발자로 요금제 개편을 맡았습니다.</p>
+
+    <h2>기술</h2>
+    <ul class="chips">
+      <li>Python</li>
+    </ul>
+
+    <h2>기술적으로 손댄 부분</h2>
+    <ul>
+      <li>요금제 변경이 코드에 반영되는 경로를 정리했습니다.</li>
+    </ul>
+
+    
+
+    <h2>결과</h2>
+    <ul>
+      <li>마케팅 정책 반영 속도를 개선했습니다.</li><li>코드 안정성과 배포 신뢰도를 높였습니다.</li>
+    </ul>
+
+    <h2>링크</h2>
+    
+    <p>공개된 저장소나 제품 링크는 없습니다.</p>
+    
+  </article>
+  
+</body>
+</html>

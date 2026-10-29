@@ -26,7 +26,7 @@
     {% for point in project.points %}<li>{{ point }}</li>{% endfor %}
   </ul>
   {% if project.diagram %}
-  <img src="/img/homelab.svg" alt="배포된 앱은 Cloudflare Tunnel과 Nginx Proxy Manager를 거쳐 Colima k3s로 간다. 데이터는 호스트 컨테이너에 남고, Beszel과 Uptime Kuma로 상태를 본다.">
+  <img src="/img/homelab.svg" alt="배포된 앱은 Cloudflare Tunnel과 Nginx Proxy Manager를 거쳐 Colima k3s로 간다. 데이터는 Host의 Container에 남고, Beszel과 Uptime Kuma로 상태를 본다.">
   {% endif %}
   <h2>결과</h2>
   <ul>
@@ -40,6 +40,6 @@
     {% endfor %}
   </ul>
   {% else %}
-  <p>공개된 저장소나 제품 링크는 없습니다.</p>
+  <p>공개된 Repository나 제품 링크는 없습니다.</p>
   {% endif %}
 </section>
